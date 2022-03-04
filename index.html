@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ludo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="col-md-12 col-xs-12 playerName" style="    padding-top: 10%;">
+        <div class="col-md-12 col-xs-12 background"></div>
+        <div class="col-md-12 col-xs-12 ludo-texuer">
+            <div class="col-md-2 col-xs-2 lodu-circle-blue">L
+                <img src="images/King.png" class="ludo-logo-king-img">
+            </div>
+            <div class="col-md-2 col-xs-2 lodu-circle-red">U</div>
+            <div class="col-md-2 col-xs-2 lodu-circle-green">D</div>
+            <div class="col-md-2 col-xs-2 lodu-circle-yellow">O
+                <div class="ludo-logo-king-text">BET</div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 player-first-step">
+            <div class="col-md-4 col-xs-4 enter-your-name">
+                <div class="col-md-12 col-xs-12"><input style="color: black;" type="text" placeholder="Enter your name"></div>
+                <div class="col-md-12 col-xs-12" style="    padding-left: 47px;
+                font-weight: 800;"><span style="font-size: 20px;">Press Enter To Start!</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-6 waitingForPlayers hidden wait-section">
+        <div class="col-md-12 col-xs-12">
+            <svg class="stop-watch-svg" version="1.1" width="600px" height="600px" viewBox="0 0 600 600" text-rendering="auto">
+                <defs>
+                </defs>
+                <g>
+                  <g class="centerGroup" >
+                  <circle  class="center" fill="none" stroke="#2E4052" stroke-width="50" stroke-miterlimit="10" cx="300" cy="300" r="25" />
+                  <circle fill="none" stroke="#2E4052" stroke-width="20" stroke-miterlimit="10" cx="300" cy="300" r="79.2" />
+                  </g>
+                  <polygon class="post" fill="#2E4052" points="330.5,183 314.1,183.1 314,195 285,195 285,183.2 269.5,183 269.5,153 330.5,153 " />
+                  <rect class="button" x="366" y="208.2"  fill="#2E4052" width="31.3" height="20.6" />
+                </g>
+                <text x="50%" y="469">LOADING</text>
+              </svg>
+        </div>
+    </div>
+    <div id="startGameDialogue" class="hidden">
+        <div>
+            <p>WELCOM TO THE<br>LUDO BET</p>
+            <button id='2players'>2 players</button>
+            <button id='3players'>3 players</button>
+            <button id='4players'>4 players</button>
+        </div>
+    </div>
+    <div id="endGameDialogue" class="hidden">
+        <p>The game is over!</p>
+        <p>The results are here</p>
+        <div>
+        </div>
+        <button id='playAgain'>Play Again?</button>
+    </div>
+    <div id="Canvas" class="col-md-12 col-xs-12 hidden all-canvas">
+        <div class="col-md-5 col-xs-5 canvas-section">
+            <section class="box box_red">
+                <div class="red home">
+                    <div class="message">
+                    </div>
+                    <div class="circle red"></div>
+                    <div class="home_red inner_space">
+                    </div>
+                    <div class="home_red inner_space">
+                    </div>
+                    <div class="home_red inner_space">
+                    </div>
+                    <div class="home_red inner_space">
+                    </div>
+                </div>
+            </section>
+            <section class="path vertical">
+                <article>
+                    <div class="vertical_green" id="50"></div>
+                    <div class="vertical_green" id="51"></div>
+                    <div class="vertical_green" id="52"></div>
+                </article>
+                <article>
+                    <div class="vertical_green" id="49"></div>
+                    <div class="vertical_green finalPath green" id="100"></div>
+                    <div class="vertical_green finalPath hasStar green" id="1">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                </article>
+                <article>
+                    <div class="vertical_green finalPath hasStar" id="48">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                    <div class="vertical_green finalPath green" id="101"></div>
+                    <div class="vertical_green" id="2">
+                    </div>
+                </article>
+                <article>
+                    <div class="vertical_green" id="47"></div>
+                    <div class="vertical_green finalPath green" id="102">
+                    </div>
+                    <div class="vertical_green" id="3"></div>
+                </article>
+                <article>
+                    <div class="vertical_green" id="46">
+                    </div>
+                    <div class="vertical_green finalPath green" id="103"></div>
+                    <div class="vertical_green" id="4"></div>
+                </article>
+                <article>
+                    <div class="vertical_green" id="45"></div>
+                    <div class="vertical_green finalPath green" id="104"></div>
+                    <div class="vertical_green" id="5"> </div>
+                </article>
+            </section>
+            <section class="box box_green">
+                <div class="green home">
+                    <div class="message">
+                    </div>
+                    <div class="circle green"></div>
+                    <div class="home_green inner_space">
+                    </div>
+                    <div class="home_green inner_space">
+                    </div>
+                    <div class="home_green inner_space">
+                    </div>
+                    <div class="home_green inner_space">
+                    </div>
+                </div>
+            </section>
+            <section class="path horizontal">
+                <article>
+                    <div class="horizontal_red" id="39"></div>
+                    <div class="horizontal_red" id="38"></div>
+                    <div class="horizontal_red" id="37"></div>
+                </article>
+                <article>
+                    <div class="horizontal_red finalPath hasStar red" id="40">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                    <div class="horizontal_red finalPath red" id="130">
+                    </div>
+                    <div class="horizontal_red " id="36">
+                    </div>
+                </article>
+                <article>
+                    <div class="horizontal_red" id="41">
+                    </div>
+                    <div class="horizontal_red finalPath red" id="131">
+                    </div>
+                    <div class="horizontal_red finalPath hasStar" id="35">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                </article>
+                <article>
+                    <div class="horizontal_red" id="42"></div>
+                    <div class="horizontal_red finalPath red" id="132">
+                    </div>
+                    <div class="horizontal_red" id="34"></div>
+                </article>
+                <article>
+                    <div class="horizontal_red" id="43"></div>
+                    <div class="horizontal_red finalPath red" id="133">
+                    </div>
+                    <div class="horizontal_red" id="33"></div>
+                </article>
+                <article>
+                    <div class="horizontal_red" id="44"></div>
+                    <div class="horizontal_red finalPath red" id="134">
+                    </div>
+                    <div class="horizontal_red" id="32"></div>
+                </article>
+            </section>
+            <div class="innerHome">
+                <div class="finished_green multipleGotti">
+                </div>
+                <div class="mid">
+                    <div class="finished_red multipleGotti">
+                    </div>
+                    <div class="gameOver">
+                    </div>
+                    <div class="finished_yellow multipleGotti">
+                    </div>
+                </div>
+                <div class="finished_blue multipleGotti"></div>
+            </div>
+            <section class="path horizontal">
+                <article>
+                    <div class="horizontal_yellow" id="6">
+                    </div>
+                    <div class="horizontal_yellow finalPath yellow" id="114"></div>
+                    <div class="horizontal_yellow" id="18"></div>
+                </article>
+                <article>
+                    <div class="horizontal_yellow" id="7">
+                    </div>
+                    <div class="horizontal_yellow finalPath yellow" id="113"></div>
+                    <div class="horizontal_yellow" id="17"></div>
+                </article>
+                <article>
+                    <div class="horizontal_yellow" id="8"></div>
+                    <div class="horizontal_yellow finalPath yellow" id="112"></div>
+                    <div class="horizontal_yellow" id="16"></div>
+                </article>
+                <article>
+                    <div class="horizontal_yellow finalPath hasStar" id="9">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                    <div class="horizontal_yellow finalPath yellow" id="111"></div>
+                    <div class="horizontal_yellow" id="15"></div>
+                </article>
+                <article>
+                    <div class="horizontal_yellow" id="10">
+                    </div>
+                    <div class="horizontal_yellow finalPath yellow" id="110"></div>
+                    <div class="horizontal_yellow finalPath hasStar yellow" id="14">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                </article>
+                <article>
+                    <div class="horizontal_yellow" id="11"></div>
+                    <div class="horizontal_yellow" id="12"></div>
+                    <div class="horizontal_yellow " id="13"></div>
+                </article>
+            </section>
+            <section class="box box_blue">
+                <div class="blue home">
+                    <div class="message">
+                    </div>
+                    <div class="circle blue"></div>
+                    <div class="home_blue inner_space">
+                    </div>
+                    <div class="home_blue inner_space">
+                    </div>
+                    <div class="home_blue inner_space">
+                    </div>
+                    <div class="home_blue inner_space">
+                    </div>
+                </div>
+            </section>
+            <section class="path vertical">
+                <article>
+                    <div class="vertical_blue" id="31"></div>
+                    <div class="vertical_blue finalPath blue" id="124"></div>
+                    <div class="vertical_blue" id="19"></div>
+                </article>
+                <article>
+                    <div class="vertical_blue" id="30"></div>
+                    <div class="vertical_blue finalPath blue" id="123"></div>
+                    <div class="vertical_blue" id="20"></div>
+                </article>
+                <article>
+                    <div class="vertical_blue" id="29"></div>
+                    <div class="vertical_blue finalPath blue" id="122"></div>
+                    <div class="vertical_blue" id="21"></div>
+                </article>
+                <article>
+                    <div class="vertical_blue" id="28"></div>
+                    <div class="vertical_blue finalPath blue" id="121"></div>
+                    <div class="vertical_blue finalPath hasStar" id="22">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                </article>
+                <article>
+                    <div class="vertical_blue finalPath hasStar blue" id="27">
+                        <img class='star' onclick="return false" src="./images/star.png">
+                    </div>
+                    <div class="vertical_blue finalPath blue" id="120"></div>
+                    <div class="vertical_blue " id="23"></div>
+                </article>
+                <article>
+                    <div class="vertical_blue" id="26"></div>
+                    <div class="vertical_blue " id="25"></div>
+                    <div class="vertical_blue " id="24"></div>
+                </article>
+            </section>
+            <section class="box box_yellow">
+                <div class="yellow home">
+                    <div class="message">
+                    </div>
+                    <div class="circle yellow"></div>
+                    <div class="home_yellow inner_space">
+                    </div>
+                    <div class="home_yellow inner_space">
+                    </div>
+                    <div class="home_yellow inner_space">
+                    </div>
+                    <div class="home_yellow inner_space">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="properties hidden">
+        <div class="powerUps">
+            <h2>POWERUPS!</h2>
+        </div>
+        <div class="conva" id="conva"></div>
+        <div class="roll">
+            <img class='gif' src='./images/initial.png'> </img>
+        </div>
+        <div class="messages">
+            <div class="emojis">
+                <img id="gif angry" src="./images/GIFS/angry.gif" alt="">
+                <img id="gif blown" src="./images/GIFS/blown.gif" alt="">
+                <img id="gif crazy" src="./images/GIFS/crazy.gif" alt="">
+                <img id="gif poo" src="./images/GIFS/poo.gif" alt="">
+                <img id="gif oh_no" src="./images/GIFS/oh_no.gif" alt="">
+
+            </div>
+            <div class="dm">
+                <textarea id="messageBox" placeholder="Type message.." name="msg" sc required></textarea>
+                <button type="submit" class="btn">
+                    <i id="sendMessage" class="fas fa-chevron-circle-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden_gifs hidden">
+        <img src="./images/GIFS/1.gif" alt="">
+        <img src="./images/GIFS/2.gif" alt="">
+        <img src="./images/GIFS/3.gif" alt="">
+        <img src="./images/GIFS/4.gif" alt="">
+        <img src="./images/GIFS/5.gif" alt="">
+        <img src="./images/GIFS/6.gif" alt="">
+    </div>
+</body>
+<script>
+    document.querySelector(".playerName input").focus();
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/constants.js"></script>
+<script src="js/client.js"></script>
+
+</html>
