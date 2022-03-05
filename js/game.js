@@ -46,7 +46,7 @@ class Game {
         this.noPlayerChange = 0;
         //holds opponent positions
         this.oppPositions = {}
-        //indicates which location holds which powerups 1:freeRoll
+            //indicates which location holds which powerups 1:freeRoll
         this.powerUpsLocation = {};
         this.gottisInside = [
             ['red1', 'red2', 'red3', 'red4'],
@@ -138,11 +138,11 @@ class Game {
         console.log(this.powerUpsLocation)
         console.log("powerUps positions")
         console.log("--------------------------------------------")
-        //as he just rolled he still has to move his gotti
-        // await this.players[this.playerIndex].emit("calculateAllGottiPos", this.gottisOutside);
+            //as he just rolled he still has to move his gotti
+            // await this.players[this.playerIndex].emit("calculateAllGottiPos", this.gottisOutside);
         if (this.gottisOutside[this.playerIndex].length == 0) {
             this.movementAmount = UTILS.biasedRandom(6, 60)
-            //sees if there is any players ahead and tries to cut it
+                //sees if there is any players ahead and tries to cut it
         } else {
             let biases = [];
             myPositions.forEach(mine => {
@@ -153,14 +153,14 @@ class Game {
                     }
             })
             myPositions.forEach(mine => {
-                for (let key in this.powerUpsLocation) {
-                    if (key - mine <= 6 && (key - mine) > 0) {
-                        console.log("a powerUp at" + key - mine);
-                        biases.push(key - mine)
+                    for (let key in this.powerUpsLocation) {
+                        if (key - mine <= 6 && (key - mine) > 0) {
+                            console.log("a powerUp at" + key - mine);
+                            biases.push(key - mine)
+                        }
                     }
-                }
-            })
-            //cuts players with 30% chance
+                })
+                //cuts players with 30% chance
             if (biases.length > 0) {
                 this.movementAmount = UTILS.biasedRandom(biases, 30)
             } else this.movementAmount = UTILS.biasedRandom(6, 20)

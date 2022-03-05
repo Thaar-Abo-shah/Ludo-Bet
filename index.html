@@ -29,27 +29,30 @@
         </div>
         <div class="col-md-12 col-xs-12 player-first-step">
             <div class="col-md-4 col-xs-4 enter-your-name">
-                <div class="col-md-12 col-xs-12"><input style="color: black;" type="text" placeholder="Enter your name"></div>
-                <div class="col-md-12 col-xs-12" style="    padding-left: 47px;
-                font-weight: 800;"><span style="font-size: 20px;">Press Enter To Start!</span></div>
+                <div style="display: flex;justify-content: center;" class="col-md-12 col-xs-12"><input style="color: black;" type="text" placeholder="Enter your name"></div>
+                <div class="col-md-12 col-xs-12" style="display: flex;justify-content: center;font-weight: 800;"><span style="font-size: 20px;">Press Enter To Start!</span></div>
             </div>
         </div>
+
+
+
+
     </div>
     <div class="col-md-6 col-xs-6 waitingForPlayers hidden wait-section">
         <div class="col-md-12 col-xs-12">
             <svg class="stop-watch-svg" version="1.1" width="600px" height="600px" viewBox="0 0 600 600" text-rendering="auto">
-                <defs>
-                </defs>
-                <g>
-                  <g class="centerGroup" >
-                  <circle  class="center" fill="none" stroke="#2E4052" stroke-width="50" stroke-miterlimit="10" cx="300" cy="300" r="25" />
-                  <circle fill="none" stroke="#2E4052" stroke-width="20" stroke-miterlimit="10" cx="300" cy="300" r="79.2" />
-                  </g>
-                  <polygon class="post" fill="#2E4052" points="330.5,183 314.1,183.1 314,195 285,195 285,183.2 269.5,183 269.5,153 330.5,153 " />
-                  <rect class="button" x="366" y="208.2"  fill="#2E4052" width="31.3" height="20.6" />
-                </g>
-                <text x="50%" y="469">LOADING</text>
-              </svg>
+            <defs>
+            </defs>
+            <g>
+              <g class="centerGroup" >
+              <circle  class="center" fill="none" stroke="#2E4052" stroke-width="50" stroke-miterlimit="10" cx="300" cy="300" r="25" />
+              <circle fill="none" stroke="#2E4052" stroke-width="20" stroke-miterlimit="10" cx="300" cy="300" r="79.2" />
+              </g>
+              <polygon class="post" fill="#2E4052" points="330.5,183 314.1,183.1 314,195 285,195 285,183.2 269.5,183 269.5,153 330.5,153 " />
+              <rect class="button" x="366" y="208.2"  fill="#2E4052" width="31.3" height="20.6" />
+            </g>
+            <text x="50%" y="469">LOADING</text>
+          </svg>
         </div>
     </div>
     <div id="startGameDialogue" class="hidden">
@@ -181,13 +184,13 @@
                     <div class="horizontal_red" id="32"></div>
                 </article>
             </section>
-            <div class="innerHome">
+            <div class="innerHome midell-pic-small">
                 <div class="finished_green multipleGotti">
                 </div>
                 <div class="mid">
                     <div class="finished_red multipleGotti">
                     </div>
-                    <div class="gameOver">
+                    <div class="gameOver midell-pic-small">
                     </div>
                     <div class="finished_yellow multipleGotti">
                     </div>
@@ -302,9 +305,11 @@
         </div>
     </div>
     <div class="properties hidden">
-        <div class="powerUps">
-            <h2>POWERUPS!</h2>
-        </div>
+        <p style="font-size: 20px;
+        font-family: system-ui;
+        position: absolute;
+        color: white;
+        top: 10px;">Public Conversation</p>
         <div class="conva" id="conva"></div>
         <div class="roll">
             <img class='gif' src='./images/initial.png'> </img>
@@ -326,6 +331,34 @@
             </div>
         </div>
     </div>
+    <div class="statesic hidden">
+        <p style="font-size: 20px;
+        font-family: system-ui;
+        position: absolute;
+        color: white;
+        top: 10px;">Your Super Power</p>
+        <div class="powerUps">
+        </div>
+        <p style="font-size: 20px;
+        font-family: system-ui;
+        position: absolute;
+        color: white;
+        top: 120px;">Setting</p>
+        <div class="col-md-12 col-xs-12 div-audio">
+            <div class="audio-play-button">
+                <i class="fa fa-play fa-lg" id="play_button"></i>
+            </div>
+            <div class="audio-stop-button">
+                <i class="fa fa-pause fa-lg" id="pause_button"></i>
+            </div>
+            <div class="audio-volumeUp-button">
+                <i class="fa fa-volume-up fa-2x" id="volumeUp_button"></i>
+            </div>
+            <div class="audio-volumeDown-button">
+                <i class="fa fa-volume-down fa-2x" id="volumeDown_button"></i>
+            </div>
+        </div>
+    </div>
 
     <div class="hidden_gifs hidden">
         <img src="./images/GIFS/1.gif" alt="">
@@ -335,13 +368,21 @@
         <img src="./images/GIFS/5.gif" alt="">
         <img src="./images/GIFS/6.gif" alt="">
     </div>
+
+    <audio src="audio/enter.wav" id="Enteraudio"></audio>
+    <audio src="audio/background.mp3" id="Bgaudio"></audio>
+    <audio src="audio/Dice.mp3" id="Diceaudio"></audio>
+    <audio src="audio/gif.wav" id="Gifaudio"></audio>
+    <audio src="audio/step.mp3" id="Stepaudio"></audio>
+    <audio src="audio/start.mp3" id="Startaudio"></audio>
+    <audio src="audio/powerUp.wav" id="Powerup"></audio>
 </body>
 <script>
-    document.querySelector(".playerName input").focus();
+    var r = document.querySelector(".playerName input").focus();
 </script>
-
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/constants.js"></script>
 <script src="js/client.js"></script>
+
 
 </html>

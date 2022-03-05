@@ -3,18 +3,45 @@ const CONSTANTS = {
 }
 const showMessage = (text, color) => {
     const d = document.querySelector("." + color + ".home" + " .message");
+    const dd = document.querySelector("#conva");
+
     let p;
     if (!text.includes(".gif")) {
-        p = document.createElement("p");
-        p.innerHTML = text;
+        p = document.createElement("div");
+        p.classList.add('conva-body')
+        if (color == 'red') {
+            color = '#db29299a';
+        }
+        if (color == 'green') {
+            color = '#70db299a';
+        }
+        if (color == 'blue') {
+            color = '#2935db9a';
+        }
+        if (color == 'yellow') {
+            color = '#dbcf299a';
+        }
+        p.style.backgroundColor = color;
+
+        mes = document.createElement("p");
+        // p.innerHTML = text;
+
+        mes.innerHTML += text + "</br>";
+        mes.style.margin = 0;
+        mes.style.color = 'white';
+        mes.style.paddingleft = '15px';
+        mes.style.padding = '3px';
+        p.appendChild(mes)
+        dd.appendChild(p)
     } else {
         p = document.createElement("img")
         p.src = text;
+        d.appendChild(p)
+        setTimeout(() => {
+            d.removeChild(p)
+        }, 3000);
     }
-    d.appendChild(p)
-    setTimeout(() => {
-        d.removeChild(p)
-    }, 3000);
+
 }
 const sock = io();
 let GAMEDATA = {
@@ -48,12 +75,15 @@ document.querySelector(".playerName").addEventListener("keypress", (e) => {
     if (e.keyCode == 13) {
         e.preventDefault();
         enterGame();
+        document.getElementById('Enteraudio').play();
+
     }
 })
 
 sock.on("nameReceived", () => {
     document.querySelector("#startGameDialogue").classList.remove("hidden");
     document.querySelector(".playerName").classList.add("hidden");
+
 })
 
 sock.on("waitForPlayers", (num) => {
@@ -74,10 +104,12 @@ enterGame = () => {
 }
 
 sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names) => {
+
     document.querySelector("#startGameDialogue").classList.add("hidden");
     document.querySelector(".waitingForPlayers").classList.add("hidden")
     GAMEDATA.playerIds = playerIds;
     document.querySelector("#Canvas").classList.remove("hidden");
+    document.querySelector(".statesic").classList.remove("hidden");
     document.querySelector(".properties").classList.remove("hidden");
     for (let i = 0; i <= availablePlayers.length; i++) {
         if (availablePlayers.includes(i)) {
@@ -93,10 +125,23 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                 //placing gottis in positions
             for (let j = 0; j < 4; j++) {
                 let gotti = document.createElement("img");
-                name.classList.add("name")
+
                 gotti.classList.add("Gotti");
                 gotti.id = gottisInside[i][j];
                 let col = gotti.id.slice(0, gotti.id.length - 1)
+                if (col == 'red') {
+                    name.classList.add("name-red")
+                }
+                if (col == 'yellow') {
+                    name.classList.add('name-yellow')
+                }
+                if (col == 'blue') {
+                    name.classList.add("name-blue")
+                }
+                if (col == 'green') {
+                    name.classList.add('name-green')
+                }
+                name.classList.add("name")
                 gotti.src = './images/gottis/' + col + '.png ';
                 let pnt = document.querySelectorAll(".home_" + col + ".inner_space");
                 pnt[j].appendChild(gotti);
@@ -128,6 +173,7 @@ sock.on("powerUpTime", async() => {
 
 sock.on("gameOver", (winners) => {
     document.querySelector("#Canvas").classList.add("hidden");
+    document.querySelector(".statesic").classList.add("hidden");
     document.querySelector(".properties").classList.add("hidden");
     document.querySelector("#endGameDialogue").classList.remove("hidden");
     winners.forEach((element, index) => {
@@ -161,15 +207,29 @@ sock.on("removeGottiShake", () => {
 document.addEventListener("click", async(e) => {
     //if a gotti has been clicked
     let gottiId = e.target.id;
-    if (gottiId.includes("playAgain")) {
+    if (gottiId.includes("play_button")) {
+        document.getElementById('Bgaudio').value = 0.2
+        document.getElementById('Bgaudio').loop = true
+        document.getElementById('Bgaudio').play();
+    } else if (gottiId.includes("pause_button")) {
+        document.getElementById('Bgaudio').pause();
+    } else if (gottiId.includes("volumeUp_button")) {
+        document.getElementById('Bgaudio').volume += 0.1;
+    } else if (gottiId.includes("volumeDown_button")) {
+        document.getElementById('Bgaudio').volume -= 0.1;
+    } else if (gottiId.includes("playAgain")) {
         document.querySelector("#endGameDialogue div").innerHTML = '';
         document.querySelector("#endGameDialogue").classList.add("hidden");
         document.querySelector("#startGameDialogue").classList.remove("hidden");
+        document.getElementById('Enteraudio').play();
     } else if (gottiId.includes("players")) {
+
+        document.getElementById('Enteraudio').play();
         sock.emit("joinGame", gottiId);
     } else if ((e.target.className == "roll" || e.target.className.includes("gif"))) {
         console.log("roll please")
         sock.emit("roll", "hey");
+        document.getElementById('Diceaudio').play();
     } else if (!e.target.className.includes("powerUps") && e.target.className.includes("powerUp") && GAMEDATA.playerIds[GAMEDATA.playerIndex] == sock.id) {
         sock.emit("powerUpClicked", e.target.className.replace("powerUp ", ""))
     }
@@ -212,6 +272,8 @@ sendMessage = (src) => {
         document.getElementById("messageBox").value = "";
     }
     if (message) sock.emit("sendMessage", message)
+    document.getElementById('Gifaudio').volume = 0.40
+    document.getElementById('Gifaudio').play()
 }
 
 sock.on("removePlayer", (color) => {
@@ -259,6 +321,7 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
     let g = document.getElementById(id);
     let fd;
     for (let i = 0; i < positions.length - 1;) {
+        document.getElementById('Stepaudio').play();
         fd = document.getElementById(positions[i]);
         //if two gottis incountered in the way removes the classes that makes them smaller
         fdGottis = fd.getElementsByClassName("Gotti");
@@ -291,6 +354,8 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
 })
 
 sock.on("getGottiOut", (id, position, gottisInside, gottisOutside) => {
+
+    document.getElementById('Startaudio').play()
     removeShakeAnimation(gottisInside, gottisOutside);
     fd = document.getElementById(position);
     g = document.getElementById(id);
@@ -314,6 +379,7 @@ addPowerUp = (destinationID) => {
     let child = dest.getElementsByClassName("powerUp")[0]
     dest.removeChild(child);
     if (GAMEDATA.playerIds[GAMEDATA.playerIndex] == sock.id) document.querySelector(".powerUps").appendChild(child);
+    document.getElementById('Powerup').play()
 }
 
 sock.on("killGotti", (killed) => {

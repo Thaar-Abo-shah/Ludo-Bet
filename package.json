@@ -20,6 +20,8 @@
   "homepage": "https://github.com/pokhrelashok/js-ludo#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.4.1"
+    "play-sound": "^1.1.5",
+    "socket.io": "^2.4.1",
+    "sound-play": "^1.1.0"
   }
 }
