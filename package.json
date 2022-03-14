@@ -1,7 +1,7 @@
 {
-  "name": "js-ludo",
+  "name": "Ludo-Bet",
   "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pokhrelashok/js-ludo.git"
+    "url": "git+https://github.com/rebal221/Ludo-Bet"
   },
-  "author": "Ashok pahadi",
-  "license": "ISC",
+  "author": "Rebal aljrmani",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/pokhrelashok/js-ludo/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/pokhrelashok/js-ludo#readme",
+  "homepage": "",
   "dependencies": {
     "express": "^4.17.1",
     "play-sound": "^1.1.5",
