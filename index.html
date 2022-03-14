@@ -71,7 +71,7 @@
         <button id='playAgain'>Play Again?</button>
     </div>
     <div id="Canvas" class="col-md-12 col-xs-12 hidden all-canvas">
-        <div class="col-md-5 col-xs-5 canvas-section">
+        <div id="canvas_section" class="col-md-5 col-xs-5 canvas-section">
             <section class="box box_red">
                 <div class="red home">
                     <div class="message">
@@ -312,7 +312,46 @@
         top: 10px;">Public Conversation</p>
         <div class="conva" id="conva"></div>
         <div class="roll">
-            <img class='gif' src='./images/initial.png'> </img>
+            <div id="time_play">
+            </div>
+            <div class="dd">
+                <img src="" class="gif" id="123"></img>
+                <div id="cube">
+                    <div class="front" id="one">
+                        <span class="dot dot1"></span>
+                    </div>
+                    <div class="back" id="tow">
+                        <span class="dot dot1"></span>
+                        <span class="dot dot2"></span>
+                    </div>
+                    <div class="right" id="three">
+                        <span class="dot dot1"></span>
+                        <span class="dot dot2"></span>
+                        <span class="dot dot3"></span>
+                    </div>
+                    <div class="left" id="four">
+                        <span class="dot dot1"></span>
+                        <span class="dot dot2"></span>
+                        <span class="dot dot3"></span>
+                        <span class="dot dot4"></span>
+                    </div>
+                    <div class="top" id="five">
+                        <span class="dot dot1"></span>
+                        <span class="dot dot2"></span>
+                        <span class="dot dot3"></span>
+                        <span class="dot dot4"></span>
+                        <span class="dot dot5"></span>
+                    </div>
+                    <div class="bottom" id="six">
+                        <span class="dot dot1"></span>
+                        <span class="dot dot2"></span>
+                        <span class="dot dot3"></span>
+                        <span class="dot dot4"></span>
+                        <span class="dot dot5"></span>
+                        <span class="dot dot6"></span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="messages">
             <div class="emojis">
@@ -357,6 +396,10 @@
             <div class="audio-volumeDown-button">
                 <i class="fa fa-volume-down fa-2x" id="volumeDown_button"></i>
             </div>
+            <div class="bot-button" id="bot-button">
+                <div class="no_bot" id="no_bot"></div>
+                <img src="images/bot.png" width="80%" id="bot_button"></img>
+            </div>
         </div>
     </div>
 
@@ -380,6 +423,10 @@
 <script>
     var r = document.querySelector(".playerName input").focus();
 </script>
+<script>
+    let bot_on = false
+</script>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/constants.js"></script>
 <script src="js/client.js"></script>

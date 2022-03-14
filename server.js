@@ -178,6 +178,7 @@ io.on('connection', async(sock) => {
                 console.log('index is!!!!!!')
             });
             let g = new Game(gameLobby[num])
+
             let temp = g.players;
             let j = -1;
             g.players = [];
@@ -214,7 +215,8 @@ io.on('connection', async(sock) => {
                 }
             }
             g.players.forEach(player => {
-                if (player.sock) player.sock.emit("startGame", g.powerUpsLocation, availablePlayers, g.gottisInside, playerIds, names)
+                var index_player = player.sock['playerIndex']
+                if (player.sock) player.sock.emit("startGame", g.powerUpsLocation, availablePlayers, g.gottisInside, playerIds, names, index_player)
             });
             games[roomId] = g;
             games[roomId].playerIndicator();

@@ -61,6 +61,7 @@ class Game {
             []
         ]
     }
+
     async playerIndicator() {
         this.hasMoved = 1;
         this.movableGottis = [];
@@ -76,7 +77,7 @@ class Game {
                     this.players.forEach(player => {
                         if (player.sock) player.sock.emit("showMessage", "Powerup Time", this.currentPlayerColor)
                     });
-                    CONSTANTS.timer = new UTILS.Sleep(5000);
+                    CONSTANTS.timer = new UTILS.Sleep(2000);
                     await CONSTANTS.timer.wait();
                     this.hasMoved = 1;
                     //powerups bata focus hata vanera code han}
@@ -96,7 +97,7 @@ class Game {
                 else if (this.playerIndex == 1) this.currentPlayerColor = "green";
                 else if (this.playerIndex == 2) this.currentPlayerColor = "yellow";
                 else if (this.playerIndex == 3) this.currentPlayerColor = "blue";
-                //adds highlight around home of current player
+                //adds highlight around home of current player 
                 this.players.forEach(player => {
                     if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id)
                 });
@@ -107,7 +108,6 @@ class Game {
         this.hasMoved = 0;
         this.oppPositions = {};
         let myPositions = [];
-
         for (let key in this.allGottis) {
             if (this.allGottis.hasOwnProperty(key)) {
                 for (let key2 in this.allGottis[key]) {
@@ -166,10 +166,14 @@ class Game {
             } else this.movementAmount = UTILS.biasedRandom(6, 20)
         }
         console.log("the movement amount came to be " + this.movementAmount)
+
         this.players.forEach(async player => {
+
+
             if (player.sock) await player.sock.emit("rollTheDice", this.movementAmount)
         });
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 1000));
+
         await this.gameController();
 
     }
@@ -204,7 +208,7 @@ class Game {
     async moveGotti(id) {
         if (this.hasMoved == 0) {
             if (this.allGottis[this.playerIndex][id] == 0) {
-                this.getGottiOut(id)
+                this.getGottiOut(id, this.playerIndex)
             } else {
                 let positions = [];
                 let currPos = this.allGottis[this.playerIndex][id]
@@ -255,7 +259,7 @@ class Game {
             }
         }
     }
-    getGottiOut(id) {
+    getGottiOut(id, index) {
         if (this.hasMoved == 0) {
             //niskeko gotti lai gottisOutside ko array ma append garni
             let ind = this.gottisInside[this.playerIndex].indexOf(id);
@@ -268,7 +272,7 @@ class Game {
             else position = CONSTANTS.startYellow
             this.allGottis[this.playerIndex][id] = position;
             this.players.forEach(async player => {
-                if (player.sock) await player.sock.emit("getGottiOut", id, position, this.gottisInside, this.gottisOutside)
+                if (player.sock) await player.sock.emit("getGottiOut", id, position, this.gottisInside, this.gottisOutside, index)
             });
         }
     }
@@ -299,7 +303,7 @@ class Game {
                 return
             } else {
                 this.noPlayerChange = 1;
-                this.players[this.playerIndex].sock.emit("addShakeAnimation", this.movableGottis)
+                this.players[this.playerIndex].sock.emit("addShakeAnimation", this.movableGottis, this.playerIndex)
             }
         }
     }
@@ -312,7 +316,7 @@ class Game {
                 } else if (this.isOnFinishLine(this.allGottis[this.playerIndex][key])) this.movableGottis.push(key)
             }
         }
-        await this.players[this.playerIndex].sock.emit("addShakeAnimation", this.movableGottis);
+        await this.players[this.playerIndex].sock.emit("addShakeAnimation", this.movableGottis, this.playerIndex);
     }
     isOnFinishLine(currPos) {
         if (currPos >= 100) {
@@ -340,6 +344,7 @@ class Game {
             } else if (this.powerUpsLocation.hasOwnProperty(fd)) {
                 this.powerUps[this.playerIndex].push(this.powerUpsLocation[fd]);
                 delete this.powerUpsLocation[fd]
+
                 return {
                     "killed": '',
                     "powerUp": fd

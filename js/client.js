@@ -103,17 +103,28 @@ enterGame = () => {
     sock.emit("playerName", name);
 }
 
-sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names) => {
-
+sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names, index_player) => {
     document.querySelector("#startGameDialogue").classList.add("hidden");
     document.querySelector(".waitingForPlayers").classList.add("hidden")
     GAMEDATA.playerIds = playerIds;
+    if (index_player == 0) {
+        document.getElementById('canvas_section').style.transform = 'rotate(180deg)'
+    }
+    if (index_player == 2) {
+        document.getElementById('canvas_section').style.transform = 'rotate(0deg)'
+    }
+    if (index_player == 3) {
+        document.getElementById('canvas_section').style.transform = 'rotateY(180deg)'
+    }
+    if (index_player == 1) {
+        document.getElementById('canvas_section').style.transform = 'rotateX(180deg)'
+    }
     document.querySelector("#Canvas").classList.remove("hidden");
     document.querySelector(".statesic").classList.remove("hidden");
     document.querySelector(".properties").classList.remove("hidden");
     for (let i = 0; i <= availablePlayers.length; i++) {
         if (availablePlayers.includes(i)) {
-            //adding profile pictures
+            //adding profile picturesf
             let profilePic = document.createElement("img");
             let name = document.createElement("h1");
             name.innerText = names[i]
@@ -122,10 +133,9 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
             console.log(CONSTANTS.defaultColors[i])
             document.querySelector("." + CONSTANTS.defaultColors[i] + ".home").appendChild(profilePic)
             document.querySelector("." + CONSTANTS.defaultColors[i] + ".home").appendChild(name)
-                //placing gottis in positions
+                //placing gottis in positions 
             for (let j = 0; j < 4; j++) {
                 let gotti = document.createElement("img");
-
                 gotti.classList.add("Gotti");
                 gotti.id = gottisInside[i][j];
                 let col = gotti.id.slice(0, gotti.id.length - 1)
@@ -145,6 +155,43 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                 gotti.src = './images/gottis/' + col + '.png ';
                 let pnt = document.querySelectorAll(".home_" + col + ".inner_space");
                 pnt[j].appendChild(gotti);
+                if (index_player == 0) {
+                    pnt[j].style.transform = 'rotate(180deg)'
+                    var vertical = document.querySelectorAll('*[class^="vertical"]');
+                    for (var r = 0; r < vertical.length; r++) {
+                        vertical[r].style.transform = 'rotate(180deg)'
+                    }
+                    var horizontal = document.querySelectorAll('*[class^="horizontal"]');
+                    for (var r = 0; r < horizontal.length; r++) {
+                        horizontal[r].style.transform = 'rotate(180deg)'
+                    }
+                    name.style.transform = 'rotate(180deg)'
+                }
+
+                if (index_player == 3) {
+                    pnt[j].style.transform = 'rotate(0deg)'
+                    var vertical = document.querySelectorAll('*[class^="vertical"]');
+                    for (var r = 0; r < vertical.length; r++) {
+                        vertical[r].style.transform = 'rotate(0deg)'
+                    }
+                    var horizontal = document.querySelectorAll('*[class^="horizontal"]');
+                    for (var r = 0; r < horizontal.length; r++) {
+                        horizontal[r].style.transform = 'rotate(0deg)'
+                    }
+                    name.style.transform = 'rotatey(180deg)'
+                }
+                if (index_player == 1) {
+                    pnt[j].style.transform = 'rotate(180deg)'
+                    var vertical = document.querySelectorAll('*[class^="vertical"]');
+                    for (var r = 0; r < vertical.length; r++) {
+                        vertical[r].style.transform = 'rotate(180deg)'
+                    }
+                    var horizontal = document.querySelectorAll('*[class^="horizontal"]');
+                    for (var r = 0; r < horizontal.length; r++) {
+                        horizontal[r].style.transform = 'rotate(180deg)'
+                    }
+                    name.style.transform = 'rotatex(180deg)'
+                }
             }
         }
     }
@@ -166,10 +213,11 @@ sock.on("showMessage", (message, color) => {
 sock.on("powerUpTime", async() => {
     let pp = document.querySelector(".powerUps");
     pp.classList.add("timer");
-    await new Promise(r => setTimeout(r, 5000))
+    await new Promise(r => setTimeout(r, 2000))
     pp.classList.remove("timer")
 
 })
+
 
 sock.on("gameOver", (winners) => {
     document.querySelector("#Canvas").classList.add("hidden");
@@ -184,6 +232,7 @@ sock.on("gameOver", (winners) => {
 })
 
 sock.on("playerIndicator", (currentPlayerColor, id) => {
+
     console.log("adding highlight");
     let all = document.querySelectorAll(".home .profilePic");
     for (let i = 0; i < all.length; i++) {
@@ -206,8 +255,22 @@ sock.on("removeGottiShake", () => {
 
 document.addEventListener("click", async(e) => {
     //if a gotti has been clicked
+
+
     let gottiId = e.target.id;
-    if (gottiId.includes("play_button")) {
+    if (gottiId.includes("bot_button")) {
+        var bot = document.getElementById('no_bot')
+        var bot_div = document.getElementById('bot-button')
+        if (bot_on) {
+            bot_on = false
+            bot.classList.add('no_bot')
+            bot_div.style.backgroundColor = '#db29299a'
+        } else {
+            bot_on = true
+            bot.classList.remove('no_bot')
+            bot_div.style.backgroundColor = '#ffffffb4'
+        }
+    } else if (gottiId.includes("play_button")) {
         document.getElementById('Bgaudio').value = 0.2
         document.getElementById('Bgaudio').loop = true
         document.getElementById('Bgaudio').play();
@@ -238,6 +301,7 @@ document.addEventListener("click", async(e) => {
         console.log("sendiong messahe")
         sendMessage();
     } else if (gottiId.includes("gif")) {
+
         let src = gottiId.split(" ")[1];
         src = "./images/GIFS/" + src + ".gif";
         sendMessage(src);
@@ -291,8 +355,26 @@ sock.on("removePlayer", (color) => {
 })
 
 sock.on("rollTheDice", async(movementAmount) => {
-    let gif = document.querySelector(".gif");
-    gif.src = './images/GIFS/' + movementAmount + ".gif";
+    document.querySelector('.gif').classList.remove('test')
+    document.querySelector('.gif').style.display = 'none';
+    var cube = document.getElementById('cube');
+    var min = 100;
+    var max = 3000;
+    var xRand = getRandom(max, min);
+    var yRand = getRandom(max, min);
+    cube.style.webkitTransform = 'rotateX(' + xRand + 'deg) rotateY(' + yRand + 'deg)';
+    cube.style.transform = 'rotateX(' + xRand + 'deg) rotateY(' + yRand + 'deg)';
+
+    function getRandom(max, min) {
+        return (Math.floor(Math.random() * (max - min)) + min) * 90;
+    }
+    setTimeout(function() {
+        let gif = document.querySelector(".gif");
+        gif.src = './images/GIFS/' + movementAmount + ".png";
+        gif.style.display = 'block'
+        gif.classList.add('test')
+    }, 1000);
+
 })
 
 
@@ -317,6 +399,7 @@ removeShakeAnimation = (gottisInside, gottisOutside) => {
 
 sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutside, result) => {
     GAMEDATA.playerIndex = playerIndex;
+
     removeShakeAnimation(gottisInside, gottisOutside);
     let g = document.getElementById(id);
     let fd;
@@ -332,7 +415,8 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
         }
         //if the gotti has reached the finish line
         i++;
-        fd = document.getElementById(positions[i]);
+        w =
+            fd = document.getElementById(positions[i]);
         if (fd) {
             fdGottis = fd.getElementsByClassName("Gotti");
             //checks the position for any opponents or powerups
@@ -410,6 +494,7 @@ gameFinished = () => {
 
 gottiHome = (id) => {
     let col = id.replace(/[0-9]/g, "");
+
     let gotti = document.querySelector('#' + id);
     document.querySelector(".finished_" + col).appendChild(gotti);
     console.log(gotti);
@@ -429,3 +514,26 @@ sock.on("addShakeAnimation", movableGottis => {
         d.classList.add("useMe")
     });
 })
+
+
+var interval = setInterval(function() {
+    if (bot_on) {
+        if (GAMEDATA.currentPlayerColor == 'yellow') {
+            sock.emit("roll", "hey");
+        }
+        if (GAMEDATA.currentPlayerColor == 'red') {
+            sock.emit("roll", "hey");
+        }
+        if (GAMEDATA.currentPlayerColor == 'green') {
+            sock.emit("roll", "hey");
+        }
+        if (GAMEDATA.currentPlayerColor == 'blue') {
+            sock.emit("roll", "hey");
+        }
+    }
+}, 1000);
+
+
+// if (GAMEDATA.currentPlayerColor == 'yellow') {
+
+// }
