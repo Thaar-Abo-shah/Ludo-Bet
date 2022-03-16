@@ -44,7 +44,8 @@ class Game {
         //indicates if a player has played his turn or not
         this.hasMoved = 1;
         this.noPlayerChange = 0;
-        //holds opponent positions
+        this.test_move = 0
+            //holds opponent positions
         this.oppPositions = {}
             //indicates which location holds which powerups 1:freeRoll
         this.powerUpsLocation = {};
@@ -179,6 +180,7 @@ class Game {
     }
     async gameController() {
         this.noPlayerChange = 0;
+        this.test_move = 0;
         if (this.movementAmount != 6) this.sixCount = 0;
         else this.sixCount++;
         if (this.sixCount != 3) {
@@ -188,17 +190,31 @@ class Game {
             if (this.movableGottis.length == 0) this.playerIndicator();
             else if (this.movableGottis.length == 1) {
                 await this.moveGotti(this.movableGottis[0]);
+                this.test_move = 1;
             } else {
                 let movableGottisPositions = [];
                 this.movableGottis.forEach((id) => {
                     movableGottisPositions.push(this.allGottis[this.playerIndex][id]);
                 })
-                if (this.gottisOutside[this.playerIndex].length == 0) await this.moveGotti(this.movableGottis[0]);
+                if (this.gottisOutside[this.playerIndex].length == 0) {
+                    await this.moveGotti(this.movableGottis[0]);
+                    this.test_move = 1;
+                }
                 //checks if all the available gottis are in the same position
                 else if (movableGottisPositions.every((val, i, arr) => val === arr[0])) {
                     this.moveGotti(this.movableGottis[0])
+                    this.test_move = 1;
+                } else if (this.test_move == 0) {
+                    this.players[this.playerIndex].sock.emit("timeforplay", "");
+                    CONSTANTS.timer = new UTILS.Sleep(5000);
+                    await CONSTANTS.timer.wait();
+                    if (this.hasMoved == 1) {
+                        this.makeRoll()
+                    }
+                    if (this.hasMoved == 0) {
+                        this.moveGotti(this.movableGottis[0])
+                    }
                 }
-
             }
         } else {
             this.sixCount = 0;
@@ -227,6 +243,7 @@ class Game {
                     positions.push(i);
                     if (i == 105 || i == 115 || i == 125 || i == 135) {
                         result["gottiHome"] = id;
+                        this.noPlayerChange = 1;
                         if (this.gottisInside[this.playerIndex].length == 0) {
                             result['gameFinished'] = this.playerIndex;
                         }
@@ -337,6 +354,7 @@ class Game {
                 console.log("someone has been murdered")
                 console.log(killed);
                 console.log("someone has been murdered")
+                this.noPlayerChange = 1;
                 return {
                     "killed": killed,
                     "powerUp": ''

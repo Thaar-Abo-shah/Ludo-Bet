@@ -3,28 +3,28 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: lighter;
-    background-image: url("../images/BG.jpg");
+    background-image: url("../images/BG.png");
     background-size: cover;
 }
 
  :root {
-    --border: #b036c0;
+    --border: #36c0af;
     --redtest: #db29299a;
     --bluetest: #2935db9a;
     --yellowtest: #dbcf299a;
     --greentest: #70db299a;
     --primary: #303030;
-    --secound: #8700b1;
+    --secound: #1465f6;
     --hover: #31003ca6;
-    --shadow: #8a00a261;
-    --bg: #831b9473;
+    --shadow: #229dbe61;
+    --bg: #ffffff;
     --icon: #00cdeb;
     --white: #fff;
     --text: #444444;
-    --blue: #003cff;
-    --red: #e40d0d;
-    --green: #00aa09;
-    --yellow: #fbff04;
+    --blue: #3662f2;
+    --red: #f04848;
+    --green: #27e631;
+    --yellow: #efff17;
 }
 
 * {
@@ -79,7 +79,7 @@ body {
     box-sizing: border-box;
     border-radius: 10%;
     font-weight: lighter;
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
 }
 
 #startGameDialogue button,
@@ -144,7 +144,6 @@ body {
     justify-content: space-evenly;
     width: 60%;
     height: 20%;
-    margin: 0 auto;
 }
 
 .midell-pic-small {
@@ -198,7 +197,7 @@ body {
     flex-wrap: wrap;
     height: 600px;
     border-radius: 3%;
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
 
@@ -243,7 +242,7 @@ body {
     border-radius: 50%;
     margin-right: 5px;
     margin-left: 5px;
-    background-color: #ecf0f1
+    background-color: #b3b3b3
 }
 
 #Canvas .path {
@@ -694,7 +693,7 @@ body {
     animation: bounceIn 1s ease-in-out;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
     list-style: none;
     border-radius: 23px;
 }
@@ -711,7 +710,7 @@ body {
     animation: bounceIn 1s ease-in-out;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
     list-style: none;
     border-radius: 23px;
 }
@@ -783,7 +782,7 @@ body {
     flex-wrap: wrap;
     /* background: blueviolet; */
     top: 40px;
-    border-top: 2px solid #e881ffa6;
+    border-top: 2px solid var(--border);
 }
 
 .properties .powerUps h2 {
@@ -1023,7 +1022,7 @@ body {
     left: 24%;
     height: 60%;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
 }
 
 .wait-section {
@@ -1039,7 +1038,7 @@ body {
     height: 20%;
     font-size: 40px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    background-image: linear-gradient(to right top, #39393933, #45454533, #50505033, #5d5d5d33, #69696933);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
 }
 
 .conva-body {
@@ -1333,6 +1332,10 @@ body {
     100% {
         opacity: 1;
     }
+}
+
+.div_pro {
+    display: flex;
 }
 
 .no_bot {

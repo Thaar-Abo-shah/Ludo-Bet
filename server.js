@@ -61,6 +61,7 @@ io.on('connection', async(sock) => {
                 if (id[i].includes(games[sock.roomId].currentPlayerColor) && games[sock.roomId].players[games[sock.roomId].playerIndex].sock.id == sock.id && games[sock.roomId].movableGottis.includes(id[i])) {
                     console.log("conditionns true")
                     games[sock.roomId].moveGotti(id[i])
+
                 }
                 break;
             }

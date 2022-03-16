@@ -105,19 +105,35 @@ enterGame = () => {
 
 sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names, index_player) => {
     document.querySelector("#startGameDialogue").classList.add("hidden");
-    document.querySelector(".waitingForPlayers").classList.add("hidden")
+    document.querySelector(".waitingForPlayers").classList.add("hidden");
+    var R_F = document.getElementById('red_finish');
+    var Y_F = document.getElementById('yellow_finish');
+    var G_F = document.getElementById('green_finish');
+    var B_F = document.getElementById('blue_finish');
     GAMEDATA.playerIds = playerIds;
     if (index_player == 0) {
         document.getElementById('canvas_section').style.transform = 'rotate(180deg)'
+        R_F.style.transform = 'rotate(180deg)'
+        Y_F.style.transform = 'rotate(180deg)'
+        G_F.style.transform = 'rotate(180deg)'
+        B_F.style.transform = 'rotate(180deg)'
     }
     if (index_player == 2) {
         document.getElementById('canvas_section').style.transform = 'rotate(0deg)'
     }
     if (index_player == 3) {
         document.getElementById('canvas_section').style.transform = 'rotateY(180deg)'
+        R_F.style.transform = 'rotateY(180deg)'
+        Y_F.style.transform = 'rotateY(180deg)'
+        G_F.style.transform = 'rotateY(180deg)'
+        B_F.style.transform = 'rotateY(180deg)'
     }
     if (index_player == 1) {
         document.getElementById('canvas_section').style.transform = 'rotateX(180deg)'
+        R_F.style.transform = 'rotateX(180deg)'
+        Y_F.style.transform = 'rotateX(180deg)'
+        G_F.style.transform = 'rotateX(180deg)'
+        B_F.style.transform = 'rotateX(180deg)'
     }
     document.querySelector("#Canvas").classList.remove("hidden");
     document.querySelector(".statesic").classList.remove("hidden");
@@ -125,13 +141,15 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
     for (let i = 0; i <= availablePlayers.length; i++) {
         if (availablePlayers.includes(i)) {
             //adding profile picturesf
+            let div_profile = document.createElement("div");
             let profilePic = document.createElement("img");
             let name = document.createElement("h1");
             name.innerText = names[i]
             profilePic.src = "./images/pp.jpg"
             profilePic.classList.add("profilePic");
+            div_profile.appendChild(profilePic)
             console.log(CONSTANTS.defaultColors[i])
-            document.querySelector("." + CONSTANTS.defaultColors[i] + ".home").appendChild(profilePic)
+            document.querySelector("." + CONSTANTS.defaultColors[i] + ".home").appendChild(div_profile)
             document.querySelector("." + CONSTANTS.defaultColors[i] + ".home").appendChild(name)
                 //placing gottis in positions 
             for (let j = 0; j < 4; j++) {
@@ -139,11 +157,48 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                 gotti.classList.add("Gotti");
                 gotti.id = gottisInside[i][j];
                 let col = gotti.id.slice(0, gotti.id.length - 1)
+                if (index_player == 0) {
+                    if (col == 'yellow') {
+                        div_profile.style.bottom = '-50px'
+                        div_profile.style.right = '-60px'
+                    }
+                    if (col == 'red') {
+                        div_profile.style.top = '-50px'
+                        div_profile.style.left = '-60px'
+                    }
+                    if (col == 'green') {
+                        div_profile.style.top = '-50px'
+                        div_profile.style.right = '-60px'
+                    }
+                    if (col == 'blue') {
+                        div_profile.style.bottom = '-50px'
+                        div_profile.style.left = '-60px'
+                    }
+                }
+                if (index_player == 1) {
+                    if (col == 'yellow') {
+                        div_profile.style.bottom = '-50px'
+                        div_profile.style.right = '-60px'
+                    }
+                    if (col == 'red') {
+                        div_profile.style.top = '-50px'
+                        div_profile.style.left = '-60px'
+                    }
+                    if (col == 'green') {
+                        div_profile.style.top = '-50px'
+                        div_profile.style.right = '-60px'
+                    }
+                    if (col == 'blue') {
+                        div_profile.style.bottom = '-50px'
+                        div_profile.style.left = '-60px'
+                    }
+                }
                 if (col == 'red') {
                     name.classList.add("name-red")
                 }
                 if (col == 'yellow') {
                     name.classList.add('name-yellow')
+
                 }
                 if (col == 'blue') {
                     name.classList.add("name-blue")
@@ -156,6 +211,12 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                 let pnt = document.querySelectorAll(".home_" + col + ".inner_space");
                 pnt[j].appendChild(gotti);
                 if (index_player == 0) {
+                    div_profile.style.transform = 'rotate(180deg)'
+                    div_profile.style.position = 'absolute'
+                    div_profile.style.height = '40%'
+                    div_profile.style.width = '40%'
+                    profilePic.style.height = '90%'
+                    profilePic.style.width = '90%'
                     pnt[j].style.transform = 'rotate(180deg)'
                     var vertical = document.querySelectorAll('*[class^="vertical"]');
                     for (var r = 0; r < vertical.length; r++) {
@@ -181,6 +242,12 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                     name.style.transform = 'rotatey(180deg)'
                 }
                 if (index_player == 1) {
+                    div_profile.style.transform = 'rotate(180deg)'
+                    div_profile.style.position = 'absolute'
+                    div_profile.style.height = '40%'
+                    div_profile.style.width = '40%'
+                    profilePic.style.height = '90%'
+                    profilePic.style.width = '90%'
                     pnt[j].style.transform = 'rotate(180deg)'
                     var vertical = document.querySelectorAll('*[class^="vertical"]');
                     for (var r = 0; r < vertical.length; r++) {
@@ -216,6 +283,13 @@ sock.on("powerUpTime", async() => {
     await new Promise(r => setTimeout(r, 2000))
     pp.classList.remove("timer")
 
+})
+
+sock.on("timeforplay", async() => {
+    let dd = document.getElementById('time_play')
+    dd.classList.add('timer_play')
+    await new Promise(f => setTimeout(f, 5000))
+    dd.classList.remove('timer_play')
 })
 
 
@@ -289,7 +363,7 @@ document.addEventListener("click", async(e) => {
 
         document.getElementById('Enteraudio').play();
         sock.emit("joinGame", gottiId);
-    } else if ((e.target.className == "roll" || e.target.className.includes("gif"))) {
+    } else if ((e.target.className == "cube" || e.target.className.includes("gif"))) {
         console.log("roll please")
         sock.emit("roll", "hey");
         document.getElementById('Diceaudio').play();
@@ -426,7 +500,12 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
             fd.appendChild(g);
         }
         if (i == positions.length - 1) {
-            if (result["killed"]) killGotti(result['killed']);
+            if (result["killed"]) {
+                killGotti(result['killed']);
+                // result['powerUp'] = 'freeRoll'
+                // addPowerUp(result['powerUp'])
+
+            }
             if (result['powerUp']) addPowerUp(result['powerUp'])
             if (result["gottiHome"]) gottiHome(result['gottiHome'])
             if (result["gameFinished"]) gottiHome(result['gottiHome'])
@@ -532,6 +611,25 @@ var interval = setInterval(function() {
         }
     }
 }, 1000);
+var rr = setInterval(function() {
+
+    let dd = document.getElementById('time_play')
+    dd.classList.add('timer_play')
+
+    dd.classList.remove('timer_play')
+    if (GAMEDATA.currentPlayerColor == 'yellow') {
+        sock.emit("roll", "hey");
+    }
+    if (GAMEDATA.currentPlayerColor == 'red') {
+        sock.emit("roll", "hey");
+    }
+    if (GAMEDATA.currentPlayerColor == 'green') {
+        sock.emit("roll", "hey");
+    }
+    if (GAMEDATA.currentPlayerColor == 'blue') {
+        sock.emit("roll", "hey");
+    }
+}, 5000);
 
 
 // if (GAMEDATA.currentPlayerColor == 'yellow') {
