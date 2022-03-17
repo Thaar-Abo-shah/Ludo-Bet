@@ -167,10 +167,7 @@ class Game {
             } else this.movementAmount = UTILS.biasedRandom(6, 20)
         }
         console.log("the movement amount came to be " + this.movementAmount)
-
         this.players.forEach(async player => {
-
-
             if (player.sock) await player.sock.emit("rollTheDice", this.movementAmount)
         });
         await new Promise(r => setTimeout(r, 1000));
@@ -183,8 +180,6 @@ class Game {
         this.test_move = 0;
         if (this.movementAmount != 6) this.sixCount = 0;
         else this.sixCount++;
-
-
         if (this.sixCount != 3) {
             //j aayepani shake animation halney code same nai hunxa
             await this.findMovableGottis();
@@ -203,21 +198,24 @@ class Game {
                 //checks if all the available gottis are in the same position
                 else if (movableGottisPositions.every((val, i, arr) => val === arr[0])) {
                     this.moveGotti(this.movableGottis[0])
-                    this.test_move = 1;
-                } else if (this.movableGottis.length >= 2) {
-                    if (this.hasMoved == 0) {
-                        await new Promise(resolve => setTimeout(resolve, 5000));
-                        if (this.gottisOutside[this.playerIndex].length == 1) await this.moveGotti(this.movableGottis[0]);
-                        if (this.gottisOutside[this.playerIndex].length == 2) await this.moveGotti(this.movableGottis[0]);
-                        if (this.gottisOutside[this.playerIndex].length == 3) await this.moveGotti(this.movableGottis[0]);
-                        if (this.gottisOutside[this.playerIndex].length == 4) await this.moveGotti(this.movableGottis[0]);
-                    }
+                } else {
+                    this.autoPlay()
                 }
             }
         } else {
             this.sixCount = 0;
-            this.test_move = 1;
             this.playerIndicator();
+        }
+    }
+    async autoPlay() {
+        if (this.movableGottis.length > 1) {
+            this.players.forEach(async player => {
+                if (player.sock) await player.sock.emit("timeforplay", "")
+            });
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            if (this.test_move == 0) {
+                this.moveGotti(this.movableGottis[0])
+            }
         }
     }
     async moveGotti(id) {
@@ -265,7 +263,9 @@ class Game {
                 console.log("moving throught positions-----------")
                 console.log(positions)
                 console.log("moving throught positions-----------")
-                this.allGottis[this.playerIndex][id] = positions[positions.length - 1];
+                if (positions[positions.length - 1]) {
+                    this.allGottis[this.playerIndex][id] = positions[positions.length - 1];
+                }
                 //checing final position for any gotti or powerUp
                 let r = this.checkFinalPosition(this.allGottis[this.playerIndex][id]);
                 result['killed'] = r['killed']

@@ -605,11 +605,6 @@ var interval = setInterval(function() {
     }
 }, 1000);
 var rr = setInterval(function() {
-
-    let dd = document.getElementById('time_play')
-    dd.classList.add('timer_play')
-
-    dd.classList.remove('timer_play')
     if (GAMEDATA.currentPlayerColor == 'yellow') {
         sock.emit("roll", "hey");
     }
@@ -623,6 +618,7 @@ var rr = setInterval(function() {
         sock.emit("roll", "hey");
     }
 }, 5000);
+
 
 
 // if (GAMEDATA.currentPlayerColor == 'yellow') {
