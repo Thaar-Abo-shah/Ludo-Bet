@@ -329,8 +329,6 @@ sock.on("removeGottiShake", () => {
 
 document.addEventListener("click", async(e) => {
     //if a gotti has been clicked
-
-
     let gottiId = e.target.id;
     if (gottiId.includes("bot_button")) {
         var bot = document.getElementById('no_bot')
@@ -360,7 +358,6 @@ document.addEventListener("click", async(e) => {
         document.querySelector("#startGameDialogue").classList.remove("hidden");
         document.getElementById('Enteraudio').play();
     } else if (gottiId.includes("players")) {
-
         document.getElementById('Enteraudio').play();
         sock.emit("joinGame", gottiId);
     } else if ((e.target.className == "cube" || e.target.className.includes("gif"))) {
@@ -381,6 +378,7 @@ document.addEventListener("click", async(e) => {
         sendMessage(src);
     } else if (/^\d*$/.test(gottiId)) {
         try {
+
             let ch = document.getElementById(gottiId).getElementsByClassName("Gotti");
             if (ch[0]) {
                 console.log("yess there is a fucking child")
@@ -391,7 +389,9 @@ document.addEventListener("click", async(e) => {
                 sock.emit("gottiClicked", ids);
             }
         } catch (err) {}
-    } else await sock.emit("gottiClicked", gottiId);
+    } else {
+        await sock.emit("gottiClicked", gottiId);
+    }
 
 })
 document.querySelector("#messageBox").addEventListener("keypress", (e) => {
@@ -448,7 +448,6 @@ sock.on("rollTheDice", async(movementAmount) => {
         gif.style.display = 'block'
         gif.classList.add('test')
     }, 1000);
-
 })
 
 
@@ -473,7 +472,6 @@ removeShakeAnimation = (gottisInside, gottisOutside) => {
 
 sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutside, result) => {
     GAMEDATA.playerIndex = playerIndex;
-
     removeShakeAnimation(gottisInside, gottisOutside);
     let g = document.getElementById(id);
     let fd;
@@ -500,12 +498,7 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
             fd.appendChild(g);
         }
         if (i == positions.length - 1) {
-            if (result["killed"]) {
-                killGotti(result['killed']);
-                // result['powerUp'] = 'freeRoll'
-                // addPowerUp(result['powerUp'])
-
-            }
+            if (result["killed"]) killGotti(result['killed']);
             if (result['powerUp']) addPowerUp(result['powerUp'])
             if (result["gottiHome"]) gottiHome(result['gottiHome'])
             if (result["gameFinished"]) gottiHome(result['gottiHome'])

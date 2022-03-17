@@ -183,6 +183,8 @@ class Game {
         this.test_move = 0;
         if (this.movementAmount != 6) this.sixCount = 0;
         else this.sixCount++;
+
+
         if (this.sixCount != 3) {
             //j aayepani shake animation halney code same nai hunxa
             await this.findMovableGottis();
@@ -190,7 +192,6 @@ class Game {
             if (this.movableGottis.length == 0) this.playerIndicator();
             else if (this.movableGottis.length == 1) {
                 await this.moveGotti(this.movableGottis[0]);
-                this.test_move = 1;
             } else {
                 let movableGottisPositions = [];
                 this.movableGottis.forEach((id) => {
@@ -198,30 +199,29 @@ class Game {
                 })
                 if (this.gottisOutside[this.playerIndex].length == 0) {
                     await this.moveGotti(this.movableGottis[0]);
-                    this.test_move = 1;
                 }
                 //checks if all the available gottis are in the same position
                 else if (movableGottisPositions.every((val, i, arr) => val === arr[0])) {
                     this.moveGotti(this.movableGottis[0])
                     this.test_move = 1;
-                } else if (this.test_move == 0) {
-                    this.players[this.playerIndex].sock.emit("timeforplay", "");
-                    CONSTANTS.timer = new UTILS.Sleep(5000);
-                    await CONSTANTS.timer.wait();
-                    if (this.hasMoved == 1) {
-                        this.makeRoll()
-                    }
+                } else if (this.movableGottis.length >= 2) {
                     if (this.hasMoved == 0) {
-                        this.moveGotti(this.movableGottis[0])
+                        await new Promise(resolve => setTimeout(resolve, 5000));
+                        if (this.gottisOutside[this.playerIndex].length == 1) await this.moveGotti(this.movableGottis[0]);
+                        if (this.gottisOutside[this.playerIndex].length == 2) await this.moveGotti(this.movableGottis[0]);
+                        if (this.gottisOutside[this.playerIndex].length == 3) await this.moveGotti(this.movableGottis[0]);
+                        if (this.gottisOutside[this.playerIndex].length == 4) await this.moveGotti(this.movableGottis[0]);
                     }
                 }
             }
         } else {
             this.sixCount = 0;
+            this.test_move = 1;
             this.playerIndicator();
         }
     }
     async moveGotti(id) {
+        this.test_move = 1;
         if (this.hasMoved == 0) {
             if (this.allGottis[this.playerIndex][id] == 0) {
                 this.getGottiOut(id, this.playerIndex)
@@ -289,11 +289,12 @@ class Game {
             else position = CONSTANTS.startYellow
             this.allGottis[this.playerIndex][id] = position;
             this.players.forEach(async player => {
-                if (player.sock) await player.sock.emit("getGottiOut", id, position, this.gottisInside, this.gottisOutside, index)
+                if (player.sock) await player.sock.emit("getGottiOut", id, position, this.gottisInside, this.gottisOutside)
             });
         }
     }
     powerUpClicked(type) {
+        this.test_move = 1;
         CONSTANTS.timer.cancel();
         this.players[this.playerIndex].sock.emit("removePowerUp", type)
         let ind = this.powerUps[this.playerIndex].indexOf(type);
@@ -372,6 +373,7 @@ class Game {
         }
         return 0
     }
+
 }
 
 
