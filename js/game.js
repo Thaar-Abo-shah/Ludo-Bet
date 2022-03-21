@@ -74,11 +74,12 @@ class Game {
                     this.hasMoved = 0;
                     CONSTANTS.timer = '';
                     //indicate powerUps that can be used
+                    this.players[this.playerIndex].sock.emit("timeforplay", "")
                     this.players[this.playerIndex].sock.emit("powerUpTime", "");
                     this.players.forEach(player => {
                         if (player.sock) player.sock.emit("showMessage", "Powerup Time", this.currentPlayerColor)
                     });
-                    CONSTANTS.timer = new UTILS.Sleep(2000);
+                    CONSTANTS.timer = new UTILS.Sleep(4000);
                     await CONSTANTS.timer.wait();
                     this.hasMoved = 1;
                     //powerups bata focus hata vanera code han}
@@ -102,6 +103,8 @@ class Game {
                 this.players.forEach(player => {
                     if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id)
                 });
+                this.players[this.playerIndex].sock.emit("timeforplay", "")
+                await new Promise(resolve => setTimeout(resolve, 8000));
             }
         }
     }
@@ -212,7 +215,7 @@ class Game {
             this.players.forEach(async player => {
                 if (player.sock) await player.sock.emit("timeforplay", "")
             });
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            await new Promise(resolve => setTimeout(resolve, 8000));
             if (this.test_move == 0) {
                 this.moveGotti(this.movableGottis[0])
             }
@@ -241,10 +244,13 @@ class Game {
                     positions.push(i);
                     if (i == 105 || i == 115 || i == 125 || i == 135) {
                         result["gottiHome"] = id;
-                        this.noPlayerChange = 1;
+
                         if (this.gottisInside[this.playerIndex].length == 0) {
                             result['gameFinished'] = this.playerIndex;
+                        } else {
+                            this.noPlayerChange = 1;
                         }
+
                     }
                     if (this.currentPlayerColor == "red" && i == CONSTANTS.redStop) {
                         finalPos = CONSTANTS.redEntry + finalPos - i - 1;
