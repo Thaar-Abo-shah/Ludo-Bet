@@ -280,7 +280,7 @@ sock.on("showMessage", (message, color) => {
 sock.on("powerUpTime", async() => {
     let pp = document.querySelector(".powerUps");
     pp.classList.add("timer");
-    await new Promise(r => setTimeout(r, 2000))
+    await new Promise(r => setTimeout(r, 4000))
     pp.classList.remove("timer")
 
 })
@@ -288,7 +288,7 @@ sock.on("powerUpTime", async() => {
 sock.on("timeforplay", async() => {
     let dd = document.getElementById('time_play')
     dd.classList.add('timer_play')
-    await new Promise(f => setTimeout(f, 5000))
+    await new Promise(f => setTimeout(f, 8000))
     dd.classList.remove('timer_play')
 })
 
@@ -588,22 +588,22 @@ sock.on("addShakeAnimation", movableGottis => {
 })
 
 
-var interval = setInterval(function() {
-    if (bot_on) {
-        if (GAMEDATA.currentPlayerColor == 'yellow') {
-            sock.emit("roll", "hey");
-        }
-        if (GAMEDATA.currentPlayerColor == 'red') {
-            sock.emit("roll", "hey");
-        }
-        if (GAMEDATA.currentPlayerColor == 'green') {
-            sock.emit("roll", "hey");
-        }
-        if (GAMEDATA.currentPlayerColor == 'blue') {
-            sock.emit("roll", "hey");
-        }
-    }
-}, 1000);
+// var interval = setInterval(function() {
+//     if (bot_on) {
+//         if (GAMEDATA.currentPlayerColor == 'yellow') {
+//             sock.emit("roll", "hey");
+//         }
+//         if (GAMEDATA.currentPlayerColor == 'red') {
+//             sock.emit("roll", "hey");
+//         }
+//         if (GAMEDATA.currentPlayerColor == 'green') {
+//             sock.emit("roll", "hey");
+//         }
+//         if (GAMEDATA.currentPlayerColor == 'blue') {
+//             sock.emit("roll", "hey");
+//         }
+//     }
+// }, 1000);
 var rr = setInterval(function() {
     if (GAMEDATA.currentPlayerColor == 'yellow') {
         sock.emit("roll", "hey");
@@ -617,7 +617,7 @@ var rr = setInterval(function() {
     if (GAMEDATA.currentPlayerColor == 'blue') {
         sock.emit("roll", "hey");
     }
-}, 5000);
+}, 8000);
 
 
 
