@@ -245,7 +245,7 @@ class Game {
                     if (i == 105 || i == 115 || i == 125 || i == 135) {
                         result["gottiHome"] = id;
 
-                        if (this.gottisInside[this.playerIndex].length == 0) {
+                        if (this.gottisInside[this.playerIndex].length == 1) {
                             result['gameFinished'] = this.playerIndex;
                         } else {
                             this.noPlayerChange = 1;
