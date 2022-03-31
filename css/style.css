@@ -1385,7 +1385,7 @@ body {
 @media only screen and (max-width: 768px) {
     .canvas-section {
         padding: 0 !important;
-        height: 350px !important;
+        height: 380px !important;
         /* width: 350px !important; */
         top: 104px !important;
     }
