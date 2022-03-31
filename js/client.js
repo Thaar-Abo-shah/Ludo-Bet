@@ -553,8 +553,11 @@ killGotti = (killed) => {
     }
 }
 
-gameFinished = () => {
+gameFinished = (totalPlayersCount) => {
     let endGame = document.querySelector("#endGameDialogue");
+    if (totalPlayersCount.length == 1) {
+
+    }
     for (let i = 0; i < totalPlayersCount; i++) {
         let el = document.createElement("button");
         el.innerHTML = this.winners[i];

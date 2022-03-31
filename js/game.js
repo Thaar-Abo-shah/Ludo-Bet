@@ -103,8 +103,6 @@ class Game {
                 this.players.forEach(player => {
                     if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id)
                 });
-                this.players[this.playerIndex].sock.emit("timeforplay", "")
-                await new Promise(resolve => setTimeout(resolve, 8000));
             }
         }
     }
@@ -244,8 +242,7 @@ class Game {
                     positions.push(i);
                     if (i == 105 || i == 115 || i == 125 || i == 135) {
                         result["gottiHome"] = id;
-
-                        if (this.gottisInside[this.playerIndex].length == 1) {
+                        if (this.gottisInside[this.playerIndex].length == 0) {
                             result['gameFinished'] = this.playerIndex;
                         } else {
                             this.noPlayerChange = 1;
