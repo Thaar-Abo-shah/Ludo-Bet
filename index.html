@@ -30,7 +30,14 @@
         <div class="col-md-12 col-xs-12 player-first-step">
             <div class="col-md-4 col-xs-4 enter-your-name">
                 <div style="display: flex;justify-content: center;" class="col-md-12 col-xs-12"><input style="color: black;" type="text" placeholder="Enter your name"></div>
-                <div class="col-md-12 col-xs-12" style="display: flex;justify-content: center;font-weight: 800;"><span style="font-size: 20px;">Press Enter To Start!</span></div>
+                <div class="col-md-12 col-xs-12" style="display: flex;justify-content: center;font-weight: 800;">
+                    <div class="start_button">
+                        <button type="button" id="start_button" class="btn btn-success">Enter</button>
+                    </div>
+                    <div class="start_text">
+                        <span style="font-size: 20px;">Press Enter To Start!</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -71,7 +78,7 @@
         <button id='playAgain'>Play Again?</button>
     </div>
     <div id="Canvas" class="col-md-12 col-xs-12 hidden all-canvas">
-        <div id="canvas_section" class="col-md-5 canvas-section">
+        <div id="canvas_section" class="col-md-5 col-xs-12 canvas-section">
             <section class="box box_red">
                 <div class="red home">
                     <div class="message">
@@ -321,54 +328,55 @@
         </div>
     </div>
     <div class="properties hidden">
-        <p style="font-size: 20px;
-        font-family: system-ui;
-        position: absolute;
-        color: white;
-        top: 10px;">Public Conversation</p>
-        <div class="conva" id="conva"></div>
+        <div id="time_play"></div>
+        <div class="convatext ">
+            <p>Public Conversation</p>
+        </div>
+        <div id="conv_div">
+            <div class="conva convar" id="conva"></div>
+        </div>
         <div class="roll">
-            <div id="time_play">
-            </div>
-            <div class="dd">
-                <img src="" class="gif" id="123"></img>
-                <div id="cube">
-                    <div class="front" id="one">
-                        <span class="dot dot1"></span>
-                    </div>
-                    <div class="back" id="tow">
-                        <span class="dot dot1"></span>
-                        <span class="dot dot2"></span>
-                    </div>
-                    <div class="right" id="three">
-                        <span class="dot dot1"></span>
-                        <span class="dot dot2"></span>
-                        <span class="dot dot3"></span>
-                    </div>
-                    <div class="left" id="four">
-                        <span class="dot dot1"></span>
-                        <span class="dot dot2"></span>
-                        <span class="dot dot3"></span>
-                        <span class="dot dot4"></span>
-                    </div>
-                    <div class="top" id="five">
-                        <span class="dot dot1"></span>
-                        <span class="dot dot2"></span>
-                        <span class="dot dot3"></span>
-                        <span class="dot dot4"></span>
-                        <span class="dot dot5"></span>
-                    </div>
-                    <div class="bottom" id="six">
-                        <span class="dot dot1"></span>
-                        <span class="dot dot2"></span>
-                        <span class="dot dot3"></span>
-                        <span class="dot dot4"></span>
-                        <span class="dot dot5"></span>
-                        <span class="dot dot6"></span>
-                    </div>
+
+        </div>
+        <div class="dd">
+            <img src="" class="gif" id="123"></img>
+            <div id="cube">
+                <div class="front" id="one">
+                    <span class="dot dot1"></span>
+                </div>
+                <div class="back" id="tow">
+                    <span class="dot dot1"></span>
+                    <span class="dot dot2"></span>
+                </div>
+                <div class="right" id="three">
+                    <span class="dot dot1"></span>
+                    <span class="dot dot2"></span>
+                    <span class="dot dot3"></span>
+                </div>
+                <div class="left" id="four">
+                    <span class="dot dot1"></span>
+                    <span class="dot dot2"></span>
+                    <span class="dot dot3"></span>
+                    <span class="dot dot4"></span>
+                </div>
+                <div class="top" id="five">
+                    <span class="dot dot1"></span>
+                    <span class="dot dot2"></span>
+                    <span class="dot dot3"></span>
+                    <span class="dot dot4"></span>
+                    <span class="dot dot5"></span>
+                </div>
+                <div class="bottom" id="six">
+                    <span class="dot dot1"></span>
+                    <span class="dot dot2"></span>
+                    <span class="dot dot3"></span>
+                    <span class="dot dot4"></span>
+                    <span class="dot dot5"></span>
+                    <span class="dot dot6"></span>
                 </div>
             </div>
         </div>
+
         <div class="messages">
             <div class="emojis">
                 <img id="gif angry" src="./images/GIFS/angry.gif" alt="">
@@ -394,11 +402,9 @@
         top: 10px;">Your Super Power</p>
         <div class="powerUps">
         </div>
-        <p style="font-size: 20px;
-        font-family: system-ui;
-        position: absolute;
-        color: white;
-        top: 120px;">Setting</p>
+        <div class="settingdiv">
+            <p>Setting</p>
+        </div>
         <div class="col-md-12 col-xs-12 div-audio">
             <div class="audio-play-button">
                 <i class="fa fa-play fa-lg" id="play_button"></i>
@@ -415,6 +421,9 @@
             <div class="bot-button" id="bot-button">
                 <div class="no_bot" id="no_bot"></div>
                 <img src="images/bot.png" width="80%" id="bot_button"></img>
+            </div>
+            <div class="chat-button" id="chat-button">
+                <img src="images/chat.png" width="80%" id="chat_button"></img>
             </div>
         </div>
     </div>
@@ -436,11 +445,10 @@
     <audio src="audio/start.mp3" id="Startaudio"></audio>
     <audio src="audio/powerUp.wav" id="Powerup"></audio>
 </body>
-<script>
-    var r = document.querySelector(".playerName input").focus();
-</script>
+
 <script>
     let bot_on = false
+    let conv_on = false
 </script>
 
 <script src="/socket.io/socket.io.js"></script>

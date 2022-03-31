@@ -777,6 +777,7 @@ body {
     width: 100%;
     overflow: scroll;
     height: 330px;
+    left: 0;
     padding: 15px;
     border-radius: -1px;
     flex-wrap: wrap;
@@ -1091,6 +1092,10 @@ body {
     margin: 3px;
 }
 
+.chat-button {
+    display: none;
+}
+
 .audio-volumeUp-button {
     justify-content: center;
     display: flex;
@@ -1174,8 +1179,9 @@ body {
 }
 
 .dd {
-    position: relative;
+    position: absolute;
     width: 75px;
+    bottom: 3px;
     height: 75px;
 }
 
@@ -1346,4 +1352,269 @@ body {
     width: 7px;
     background-color: var(--red);
     transform: rotate(45deg);
+}
+
+.settingdiv {
+    font-size: 20px;
+    font-family: system-ui;
+    position: absolute;
+    color: white;
+    top: 120px;
+}
+
+.convatext {
+    font-size: 20px;
+    font-family: system-ui;
+    position: absolute;
+    color: white;
+    top: 10px;
+}
+
+.start_button {
+    display: none;
+}
+
+.start_text {
+    display: block;
+}
+
+.conv_div {
+    display: block;
+}
+
+@media only screen and (max-width: 768px) {
+    .canvas-section {
+        padding: 0 !important;
+        height: 350px !important;
+        /* width: 350px !important; */
+        top: 104px !important;
+    }
+    body {
+        background-size: auto;
+    }
+    .start_button {
+        display: block;
+        padding-top: 25%;
+    }
+    .start_text {
+        display: none;
+    }
+    .lodu-circle-green {
+        height: 80px;
+        width: 80px !important;
+        margin: 5px;
+        font-size: 60px;
+        border: 3px solid var(--green);
+    }
+    .lodu-circle-blue {
+        height: 80px;
+        width: 80px !important;
+        margin: 5px;
+        font-size: 60px;
+        border: 3px solid var(--blue);
+    }
+    .ludo-logo-king-img {
+        position: absolute;
+        width: 85px;
+        top: -34px;
+        left: 0px;
+    }
+    .ludo-logo-king-text {
+        display: none;
+    }
+    .lodu-circle-red {
+        height: 80px;
+        width: 80px !important;
+        margin: 5px;
+        font-size: 60px;
+        border: 3px solid var(--red);
+    }
+    .lodu-circle-yellow {
+        height: 80px;
+        width: 80px !important;
+        margin: 5px;
+        font-size: 60px;
+        border: 3px solid var(--yellow);
+    }
+    .background {
+        border-radius: 19px;
+        position: fixed !important;
+        width: 93% !important;
+        left: 2%;
+        top: 44%;
+        height: 20%;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+    }
+    .ludo-texuer {
+        width: 100%;
+        height: 227px;
+        /* position: absolute; */
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    .player-first-step {
+        top: 50px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .statesic {
+        padding-top: 73px !important;
+        align-items: stretch;
+        justify-content: center;
+        position: absolute;
+        top: 1vh;
+        z-index: 600;
+        height: 21%;
+        width: 91.5%;
+        left: 4%;
+        display: flex !important;
+        animation: bounceIn 1s ease-in-out;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+        list-style: none;
+        border-radius: 8px;
+    }
+    .statesic .powerUps {
+        z-index: 4;
+        padding-top: 0;
+        position: absolute;
+        margin-top: 30px;
+        top: 12px;
+        height: 29%;
+        display: flex;
+        width: 100%;
+        border-top: 2px solid var(--border);
+        text-align: center;
+        border-bottom: 2px solid var(--border);
+        color: white;
+    }
+    .convatext {
+        display: none;
+    }
+    .settingdiv {
+        display: none;
+    }
+    .convar {
+        display: none;
+    }
+    .powerUp {
+        width: 37px !important;
+        border-radius: 7px;
+        height: 36px !important;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 10px px;
+        z-index: 5;
+        background-position: center;
+    }
+    .properties .messages {
+        z-index: 4;
+        bottom: 10px;
+        left: -8px;
+        padding: 15px;
+        position: absolute;
+        text-align: center;
+        width: 69%;
+        border-radius: 8px;
+    }
+    .name-yellow {
+        right: auto;
+        bottom: -17px;
+    }
+    .name-red {
+        top: -31px;
+    }
+    .name-blue {}
+    .name-green {}
+    .properties {
+        align-items: stretch;
+        justify-content: center;
+        position: absolute;
+        bottom: 2vh;
+        height: 18%;
+        top: auto;
+        left: 4%;
+        width: 91.5%;
+        display: flex !important;
+        animation: bounceIn 1s ease-in-out;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+        list-style: none;
+        border-radius: 8px;
+    }
+    .properties .roll {
+        top: 0;
+        width: 30%;
+        right: 6%;
+    }
+    #startGameDialogue,
+    #endGameDialogue {
+        font-size: 29px;
+        color: var(--white);
+        animation: bounceIn 1s ease-in-out;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        text-align: center;
+        flex-wrap: wrap;
+        margin: 0px auto;
+        margin-left: 3.5%;
+        display: flex;
+        justify-content: space-around;
+        width: 90%;
+        /* height: 33%; */
+        margin-top: 40%;
+        padding: 44px;
+        box-sizing: border-box;
+        border-radius: 10%;
+        font-weight: lighter;
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+    }
+    .wait-section {
+        margin-top: 73%;
+        color: white;
+        border-radius: 19px;
+        position: fixed !important;
+        width: 93% !important;
+        left: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 13%;
+        font-size: 17px;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+    }
+    .dd {
+        position: relative;
+        width: 75px;
+        height: 75px;
+        left: 33%;
+        top: 39%;
+    }
+    .chat-button {
+        justify-content: center;
+        display: flex;
+        cursor: pointer;
+        color: var(--white);
+        align-items: center;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+        width: 40px;
+        padding: 2px;
+        background: var(--bg);
+        border-radius: 59px;
+        height: 40px;
+        margin: 3px;
+    }
+    .conv_div {
+        position: absolute;
+        top: -58vh;
+        width: 100%;
+        height: 59vh;
+        border-radius: 3%;
+        background-color: #233346;
+    }
 }

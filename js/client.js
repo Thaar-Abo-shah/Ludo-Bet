@@ -160,19 +160,19 @@ sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names
                 if (index_player == 0) {
                     if (col == 'yellow') {
                         div_profile.style.bottom = '-50px'
-                        div_profile.style.right = '-60px'
+                        div_profile.style.right = '-45px'
                     }
                     if (col == 'red') {
                         div_profile.style.top = '-50px'
-                        div_profile.style.left = '-60px'
+                        div_profile.style.left = '-45px'
                     }
                     if (col == 'green') {
                         div_profile.style.top = '-50px'
-                        div_profile.style.right = '-60px'
+                        div_profile.style.right = '-45px'
                     }
                     if (col == 'blue') {
                         div_profile.style.bottom = '-50px'
-                        div_profile.style.left = '-60px'
+                        div_profile.style.left = '-45px'
                     }
                 }
                 if (index_player == 1) {
@@ -342,6 +342,22 @@ document.addEventListener("click", async(e) => {
             bot.classList.remove('no_bot')
             bot_div.style.backgroundColor = '#ffffffb4'
         }
+    } else if (gottiId.includes("start_button")) {
+        enterGame();
+        document.getElementById('Enteraudio').play();
+    } else if (gottiId.includes("chat_button")) {
+        var r = document.getElementById('conv_div')
+        var f = document.getElementById('conva')
+        if (conv_on) {
+            conv_on = false
+            r.classList.remove('conv_div')
+            f.classList.add('convar')
+        } else {
+            conv_on = true
+            r.classList.add('conv_div')
+            f.classList.remove('convar')
+        }
+
     } else if (gottiId.includes("play_button")) {
         document.getElementById('Bgaudio').value = 0.2
         document.getElementById('Bgaudio').loop = true
