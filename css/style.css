@@ -32,11 +32,38 @@ body {
     margin: 0;
 }
 
-.playerName,
-.waitingForPlayers {
+ .waitingForPlayers {
     padding-top: 2%;
     animation: bounceInDown 1s ease-in-out;
 }
+.playerName{
+    width: 60%;
+    height: 74%;
+    position: absolute;
+     top: 13%;
+    left: 20%;
+     border-radius: 19px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
+    background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+    justify-content: space-around;
+    text-align: center;
+    font-size: 30px;
+    color: var(--white);
+    animation: bounceIn 1s ease-in-out;
+    z-index: 10;
+}
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+.main-game{
+    width: 80%;
+    height: 750px;
+    /* background-color: red; */
+    position: absolute;
+    top: 5%;
+    left: 10%;
+}
+
 
 .waitingForPlayers {
     animation: fadeIn 1.2s ease-in-out;
@@ -46,7 +73,7 @@ body {
     outline: none;
     height: 40px;
     box-sizing: border-box;
-    width: 250px;
+    width: 50%;
     background-color: #ecf0f1;
     border: 2px var(--secound) solid;
     border-radius: 8px;
@@ -54,14 +81,13 @@ body {
 }
 
 #Canvas {
-    flex-wrap: wrap;
+    /* flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
-    display: flex;
+    display: flex; */
     padding-top: 9vh;
 }
 
-#startGameDialogue,
 #endGameDialogue {
     font-size: 30px;
     color: var(--white);
@@ -687,7 +713,7 @@ body {
     position: absolute;
     top: 9vh;
     height: 600px;
-    left: 30vh;
+    /* left: 30vh; */
     width: 244px;
     display: flex !important;
     animation: bounceIn 1s ease-in-out;
@@ -704,7 +730,7 @@ body {
     position: absolute;
     top: 9vh;
     height: 600px;
-    right: 30vh;
+    /* right: 30vh; */
     width: 244px;
     display: flex !important;
     animation: bounceIn 1s ease-in-out;
@@ -896,7 +922,7 @@ body {
 .ludo-texuer {
     width: 100%;
     height: 300px;
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1004,8 +1030,8 @@ body {
     font-size: 56px;
     position: absolute;
     width: 140px;
-    top: 119px;
-    right: -117px;
+    right: 3%;
+    top: 2%;
     color: var(--white);
 }
 
@@ -1386,7 +1412,7 @@ body {
     .canvas-section {
         padding: 0 !important;
         height: 360px !important;
-        width: 360px !important;
+        /* width: 360px !important; */
         top: 128px !important;
     }
     body {
@@ -1469,7 +1495,7 @@ body {
         z-index: 600;
         height: 21%;
         width: 91.5%;
-        left: 4%;
+        /* left: 4%; */
         display: flex !important;
         animation: bounceIn 1s ease-in-out;
         padding: 10px;
@@ -1534,10 +1560,10 @@ body {
         align-items: stretch;
         justify-content: center;
         position: absolute;
-        bottom: 2vh;
+        /* bottom: 2vh; */
         height: 18%;
-        top: auto;
-        left: 4%;
+        /* top: auto; */
+        /* left: 4%; */
         width: 91.5%;
         display: flex !important;
         animation: bounceIn 1s ease-in-out;
@@ -1555,7 +1581,7 @@ body {
     #startGameDialogue,
     #endGameDialogue {
         font-size: 29px;
-        color: var(--white);
+        /* color: var(--white);
         animation: bounceIn 1s ease-in-out;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
         text-align: center;
@@ -1565,13 +1591,12 @@ body {
         display: flex;
         justify-content: space-around;
         width: 93.5%;
-        /* height: 33%; */
         margin-top: 40%;
         padding: 44px;
         box-sizing: border-box;
         border-radius: 10%;
         font-weight: lighter;
-        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33); */ 
     }
     .wait-section {
         margin-top: 73%;
@@ -1618,10 +1643,44 @@ body {
         background-color: #233346;
         animation: bounceIn 1s ease-in-out;
     }
-    .playerName,
+     
     .waitingForPlayers {
         padding-top: 2%;
         width: 100% !important;
         animation: bounceInDown 1s ease-in-out;
     }
 }
+
+
+
+@media only screen and (orientation: Portrait) {
+    .playerName{
+        width: 100%;
+        left: 0;
+        height: 86%;
+        top:7%;
+    }
+    .playerName input{
+        width: 75%;
+    }
+    .ludo-texuer{
+        align-items: center;
+    }
+    .main-game {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .ludo-logo-king-text {
+        /* display: none; */
+        font-size: 26px;
+        right: 0;
+        width: auto;
+        top: 5%;
+    }
+    #Canvas {
+        padding-top: 4vh;
+    }
+  }

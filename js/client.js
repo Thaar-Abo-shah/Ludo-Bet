@@ -71,20 +71,20 @@ function createPowerup(type) {
     this.image = elem;
 }
 
-document.querySelector(".playerName").addEventListener("keypress", (e) => {
-    if (e.keyCode == 13) {
-        e.preventDefault();
-        enterGame();
-        document.getElementById('Enteraudio').play();
+// document.querySelector(".playerName").addEventListener("keypress", (e) => {
+//     if (e.keyCode == 13) {
+//         e.preventDefault();
+//         enterGame();
+//         document.getElementById('Enteraudio').play();
 
-    }
-})
+//     }
+// })
 
-sock.on("nameReceived", () => {
-    document.querySelector("#startGameDialogue").classList.remove("hidden");
-    document.querySelector(".playerName").classList.add("hidden");
+// sock.on("nameReceived", () => {
+//     document.querySelector("#startGameDialogue").classList.remove("hidden");
+//     document.querySelector(".playerName").classList.add("hidden");
 
-})
+// })
 
 sock.on("waitForPlayers", (num) => {
     let p = document.createElement("div");
@@ -98,14 +98,14 @@ sock.on("waitForPlayers", (num) => {
 })
 enterGame = () => {
     let name = document.querySelector(".playerName input").value.toUpperCase();
-    document.querySelector("#startGameDialogue").classList.remove("hidden");
-    document.querySelector(".playerName").classList.add("hidden");
+    // document.querySelector("#startGameDialogue").classList.remove("hidden");
+    // document.querySelector(".playerName").classList.add("hidden");
     sock.emit("playerName", name);
 }
 
 sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names, index_player) => {
-    document.querySelector("#startGameDialogue").classList.add("hidden");
     document.querySelector(".waitingForPlayers").classList.add("hidden");
+    document.querySelector("#startGameDialogue").classList.add("hidden");
     var R_F = document.getElementById('red_finish');
     var Y_F = document.getElementById('yellow_finish');
     var G_F = document.getElementById('green_finish');

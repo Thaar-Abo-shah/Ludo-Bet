@@ -156,7 +156,7 @@ io.on('connection', async(sock) => {
     sock.on("playerName", name => {
         let p = new Player(name, sock);
         playersInGame[sock.id] = p;
-        sock.emit("nameReceived", "");
+        // sock.emit("nameReceived", "");
     })
     sock.on("joinGame", type => {
         let num = parseInt(type.replace("players"))
