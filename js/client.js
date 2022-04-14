@@ -292,6 +292,20 @@ sock.on("timeforplay", async() => {
     dd.classList.remove('timer_play')
 })
 
+sock.on("removeDice", () => {
+    var dice = document.querySelector(".dd");
+    dice.style.display = 'none';
+
+})
+sock.on("addDice", () => {
+    var dice = document.querySelector(".dd");
+    dice.style.display = 'block';
+
+})
+
+
+
+
 
 sock.on("gameOver", (winners) => {
     document.querySelector("#Canvas").classList.add("hidden");
@@ -318,14 +332,23 @@ sock.on("playerIndicator", (currentPlayerColor, id) => {
     GAMEDATA.currentPlayerColor = currentPlayerColor;
     let home = document.querySelector("." + currentPlayerColor + ".home .profilePic");
     home.classList.add('highLight');
+
     if (sock.id === id) {
         document.querySelector(".gif").classList.add("heartBeat");
+    }
+    if (currentPlayerColor == 'red') {
+        var dice = document.querySelector(".dd");
+        dice.style.display = 'block';
+    } else {
+
     }
 })
 
 sock.on("removeGottiShake", () => {
     document.querySelector(".gif").classList.remove("heartBeat");
+
 })
+
 
 document.addEventListener("click", async(e) => {
     //if a gotti has been clicked
@@ -603,6 +626,7 @@ sock.on("addShakeAnimation", movableGottis => {
     movableGottis.forEach(element => {
         var d = document.getElementById(element);
         d.classList.add("useMe")
+
     });
 })
 

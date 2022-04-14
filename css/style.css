@@ -21,10 +21,10 @@ body {
     --icon: #00cdeb;
     --white: #fff;
     --text: #444444;
-    --blue: #3662f2;
-    --red: #f04848;
-    --green: #27e631;
-    --yellow: #efff17;
+    --blue: #668aff;
+    --red: #fc6565;
+    --green: #5cf164;
+    --yellow: #f6ff76;
 }
 
 * {
@@ -32,17 +32,18 @@ body {
     margin: 0;
 }
 
- .waitingForPlayers {
+.waitingForPlayers {
     padding-top: 2%;
     animation: bounceInDown 1s ease-in-out;
 }
-.playerName{
+
+.playerName {
     width: 60%;
     height: 74%;
     position: absolute;
-     top: 13%;
+    top: 13%;
     left: 20%;
-     border-radius: 19px;
+    border-radius: 19px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
     background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
     justify-content: space-around;
@@ -52,18 +53,19 @@ body {
     animation: bounceIn 1s ease-in-out;
     z-index: 10;
 }
+
 hr.solid {
-  border-top: 3px solid #bbb;
+    border-top: 3px solid #bbb;
 }
-.main-game{
+
+.main-game {
     width: 80%;
     height: 750px;
     /* background-color: red; */
     position: absolute;
-    top: 5%;
+    top: 2%;
     left: 10%;
 }
-
 
 .waitingForPlayers {
     animation: fadeIn 1.2s ease-in-out;
@@ -268,7 +270,7 @@ hr.solid {
     border-radius: 50%;
     margin-right: 5px;
     margin-left: 5px;
-    background-color: #b3b3b3
+    background-color: #ffffff
 }
 
 #Canvas .path {
@@ -628,7 +630,7 @@ hr.solid {
 .Gotti {
     z-index: 10;
     margin: auto !important;
-    height: 78% !important;
+    height: 90% !important;
     width: auto !important;
     cursor: pointer;
     animation: bounceIn 0.8s ease-in-out;
@@ -1596,7 +1598,7 @@ hr.solid {
         box-sizing: border-box;
         border-radius: 10%;
         font-weight: lighter;
-        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33); */ 
+        background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33); */
     }
     .wait-section {
         margin-top: 73%;
@@ -1643,7 +1645,6 @@ hr.solid {
         background-color: #233346;
         animation: bounceIn 1s ease-in-out;
     }
-     
     .waitingForPlayers {
         padding-top: 2%;
         width: 100% !important;
@@ -1651,19 +1652,17 @@ hr.solid {
     }
 }
 
-
-
 @media only screen and (orientation: Portrait) {
-    .playerName{
+    .playerName {
         width: 100%;
         left: 0;
         height: 86%;
-        top:7%;
+        top: 7%;
     }
-    .playerName input{
+    .playerName input {
         width: 75%;
     }
-    .ludo-texuer{
+    .ludo-texuer {
         align-items: center;
     }
     .main-game {
@@ -1683,4 +1682,26 @@ hr.solid {
     #Canvas {
         padding-top: 4vh;
     }
-  }
+}
+
+.page {
+    display: none;
+}
+
+#loading {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 132, 240, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.load {
+    justify-content: center;
+    align-items: center;
+}

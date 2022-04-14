@@ -26,10 +26,11 @@ let gameLobby = {
 }
 io.on('connection', async(sock) => {
     sock.on("roll", () => {
-        if (games[sock.roomId].hasMoved == 1 && games[sock.roomId].players[games[sock.roomId].playerIndex].sock.id === sock.id) {
-            games[sock.roomId].players[games[sock.roomId].playerIndex].sock.emit("removeGottiShake", "");
-            games[sock.roomId].makeRoll();
-        }
+        if (games[sock.roomId] != null)
+            if (games[sock.roomId].hasMoved == 1 && games[sock.roomId].players[games[sock.roomId].playerIndex].sock.id === sock.id) {
+                games[sock.roomId].players[games[sock.roomId].playerIndex].sock.emit("removeGottiShake", "");
+                games[sock.roomId].makeRoll();
+            }
     })
     sock.on("gottiClicked", (id) => {
         if (games[sock.roomId].isPowerUpRunning && games[sock.roomId].movableGottis.includes(id)) {
@@ -196,13 +197,13 @@ io.on('connection', async(sock) => {
                 }
             }
             let places = [];
-            let noOfPowerUps = 5 + Math.ceil(Math.random() * 5)
-            for (let i = 0; i < noOfPowerUps; i++) {
-                let loc = Math.ceil(Math.random() * 52);
-                if (!places.includes(loc) && loc != 40 && loc != 1 && loc != 48 && loc != 14 && loc != 9 && loc != 22 && loc != 27 && loc != 35) {
-                    g.powerUpsLocation[loc] = g.availablePowerUps[Math.floor(Math.random() * g.availablePowerUps.length)]
-                }
-            }
+            // let noOfPowerUps = 5 + Math.ceil(Math.random() * 5)
+            // for (let i = 0; i < noOfPowerUps; i++) {
+            //     let loc = Math.ceil(Math.random() * 52);
+            //     if (!places.includes(loc) && loc != 40 && loc != 1 && loc != 48 && loc != 14 && loc != 9 && loc != 22 && loc != 27 && loc != 35) {
+            //         g.powerUpsLocation[loc] = g.availablePowerUps[Math.floor(Math.random() * g.availablePowerUps.length)]
+            //     }
+            // }
             //prepares the ludo board in all the players
             let playerIds = [];
             let names = []
