@@ -1213,8 +1213,8 @@ hr.solid {
 .dd {
     position: absolute;
     width: 75px;
-    bottom: 3px;
-    height: 75px;
+    bottom: 8%;
+    height: 66px;
 }
 
 #cube div {

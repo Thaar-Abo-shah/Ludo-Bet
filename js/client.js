@@ -75,7 +75,7 @@ function createPowerup(type) {
 sock.on("waitForPlayers", (num) => {
     let p = document.createElement("div");
 
-    p.innerHTML = "<span style='width='100%';'>WAITING FOR " + num + " PLAYERS!</span><img src='images/search.svg' width='80vh'>"
+    p.innerHTML = "<span style='width='100%';'>WAITING FOR " + num + " PLAYERS!</span><img src='images/search.svg' width='100px'>"
 
     document.querySelector(".waitingForPlayers").classList.remove("hidden");
     document.querySelector("#startGameDialogue").classList.add("hidden");
@@ -272,11 +272,18 @@ sock.on("powerUpTime", async() => {
 
 })
 
-sock.on("timeforplay", async() => {
-    let dd = document.getElementById('time_play')
-    dd.classList.add('timer_play')
-    await new Promise(f => setTimeout(f, 8000))
-    dd.classList.remove('timer_play')
+sock.on("timeforplay", async(count) => {
+    if (count == 0) {
+        let dd = document.getElementById('time_play')
+        dd.classList.add('timer_play')
+        await new Promise(f => setTimeout(f, 8000))
+        dd.classList.remove('timer_play')
+    } else {
+        let dd = document.getElementById('time_play')
+        dd.classList.add('timer_play')
+        await new Promise(f => setTimeout(f, 16000))
+        dd.classList.remove('timer_play')
+    }
 })
 
 sock.on("removeDice", () => {

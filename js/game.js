@@ -88,7 +88,7 @@ class Game {
             if (this.noPlayerChange == 0) {
                 this.isPowerUpActive = 0;
                 this.players.forEach(player => {
-                    if (player.sock) player.sock.emit("removeShakeAnimation", this.gottisInside, this.gottisOutside,this.playerIndex);
+                    if (player.sock) player.sock.emit("removeShakeAnimation", this.gottisInside, this.gottisOutside, this.playerIndex);
                 });
                 this.playerIndex = (this.playerIndex + 1) % 4;
                 while (!this.allGottis.hasOwnProperty(this.playerIndex)) {
@@ -101,7 +101,7 @@ class Game {
                 else if (this.playerIndex == 3) this.currentPlayerColor = "blue";
                 //adds highlight around home of current player 
                 this.players.forEach(player => {
-                    if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id,this.playerIndex)
+                    if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id, this.playerIndex)
                 });
             }
         }
@@ -140,8 +140,8 @@ class Game {
         // console.log(this.powerUpsLocation)
         // console.log("powerUps positions")
         // console.log("--------------------------------------------")
-            //as he just rolled he still has to move his gotti
-            // await this.players[this.playerIndex].emit("calculateAllGottiPos", this.gottisOutside);
+        //as he just rolled he still has to move his gotti
+        // await this.players[this.playerIndex].emit("calculateAllGottiPos", this.gottisOutside);
         if (this.gottisOutside[this.playerIndex].length == 0) {
             this.movementAmount = UTILS.biasedRandom(6, 60)
                 //sees if there is any players ahead and tries to cut it
@@ -200,7 +200,7 @@ class Game {
                 else if (movableGottisPositions.every((val, i, arr) => val === arr[0])) {
                     this.moveGotti(this.movableGottis[0])
                 } else {
-                    this.autoPlay()
+                    this.autoPlay(this.sixCount, movableGottisPositions)
                 }
             }
         } else {
@@ -208,14 +208,41 @@ class Game {
             this.playerIndicator();
         }
     }
-    async autoPlay() {
-        if (this.movableGottis.length > 1) {
-            this.players.forEach(async player => {
-                if (player.sock) await player.sock.emit("timeforplay", "")
-            });
-            await new Promise(resolve => setTimeout(resolve, 8000));
-            if (this.test_move == 0) {
-                this.moveGotti(this.movableGottis[0])
+    async autoPlay(sixCount, movableGottisPositions) {
+        if (sixCount == 0) {
+            console.log('jkshdkshdkjhfsjkhdfjkshdjkfhskjdhfksd')
+            console.log(this.movableGottis)
+            console.log(movableGottisPositions)
+            if (this.movableGottis.length > 1) {
+                this.players.forEach(async player => {
+                    if (player.sock) await player.sock.emit("timeforplay", sixCount)
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 8000));
+                if (this.test_move == 0) {
+                    var max = Math.max(...movableGottisPositions);
+
+                    var index = movableGottisPositions.indexOf(max);
+                    console.log(index)
+                    this.moveGotti(this.movableGottis[index])
+
+                }
+            }
+        } else {
+            if (this.movableGottis.length > 1) {
+                this.players.forEach(async player => {
+                    if (player.sock) await player.sock.emit("timeforplay", sixCount)
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 16000));
+                if (this.test_move == 0) {
+                    var max = Math.max(...movableGottisPositions);
+
+                    var index = movableGottisPositions.indexOf(max);
+                    console.log(index)
+
+                    this.moveGotti(this.movableGottis[index])
+                }
             }
         }
     }
