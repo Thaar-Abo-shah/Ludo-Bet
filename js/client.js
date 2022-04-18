@@ -70,21 +70,7 @@ function createPowerup(type) {
     elem.appendChild(this.description);
     this.image = elem;
 }
-
-// document.querySelector(".playerName").addEventListener("keypress", (e) => {
-//     if (e.keyCode == 13) {
-//         e.preventDefault();
-//         enterGame();
-//         document.getElementById('Enteraudio').play();
-
-//     }
-// })
-
-// sock.on("nameReceived", () => {
-//     document.querySelector("#startGameDialogue").classList.remove("hidden");
-//     document.querySelector(".playerName").classList.add("hidden");
-
-// })
+ 
 
 sock.on("waitForPlayers", (num) => {
     let p = document.createElement("div");
@@ -100,7 +86,8 @@ enterGame = () => {
     let name = document.querySelector(".playerName input").value.toUpperCase();
     // document.querySelector("#startGameDialogue").classList.remove("hidden");
     // document.querySelector(".playerName").classList.add("hidden");
-    sock.emit("playerName", name);
+    player={'name':name,'id':name}
+    sock.emit("playerName", player);
 }
 
 sock.on("startGame", (powerUps, availablePlayers, gottisInside, playerIds, names, index_player) => {
@@ -311,6 +298,7 @@ sock.on("gameOver", (winners) => {
     document.querySelector("#Canvas").classList.add("hidden");
     document.querySelector(".statesic").classList.add("hidden");
     document.querySelector(".properties").classList.add("hidden");
+    document.querySelector(".main-game").classList.add("hidden");
     document.querySelector("#endGameDialogue").classList.remove("hidden");
     winners.forEach((element, index) => {
         let e = document.createElement("button");
@@ -319,8 +307,41 @@ sock.on("gameOver", (winners) => {
     })
 })
 
-sock.on("playerIndicator", (currentPlayerColor, id) => {
+sock.on("playerIndicator", (currentPlayerColor, id,i) => {
 
+    let r=document.querySelector(".roll");
+    if(i==0){
+        r.classList.add("red1");
+        r.classList.remove("blue1");
+        r.classList.remove("yallow1");
+        r.classList.remove("green1");
+    }
+    else if(i==1){
+        r.classList.remove("red1");
+        r.classList.remove("blue1");
+        r.classList.remove("yallow1");
+        r.classList.add("green1");
+    }
+    else if(i==2){
+        r.classList.remove("red1");
+        r.classList.remove("blue1");
+        r.classList.add("yallow1");
+        r.classList.remove("green1");
+    }
+      
+    else if(i==3){
+        r.classList.remove("red1");
+        r.classList.add("blue1");
+        r.classList.remove("yallow1");
+        r.classList.remove("green1");
+    }
+
+    
+
+
+
+    
+   
     console.log("adding highlight");
     let all = document.querySelectorAll(".home .profilePic");
     for (let i = 0; i < all.length; i++) {
@@ -346,6 +367,7 @@ sock.on("playerIndicator", (currentPlayerColor, id) => {
 
 sock.on("removeGottiShake", () => {
     document.querySelector(".gif").classList.remove("heartBeat");
+
 
 })
 
@@ -392,6 +414,7 @@ document.addEventListener("click", async(e) => {
     } else if (gottiId.includes("volumeDown_button")) {
         document.getElementById('Bgaudio').volume -= 0.1;
     } else if (gottiId.includes("playAgain")) {
+        console.log("jhggjhgjhg")
         document.querySelector("#endGameDialogue div").innerHTML = '';
         document.querySelector("#endGameDialogue").classList.add("hidden");
         document.querySelector("#startGameDialogue").classList.remove("hidden");
@@ -490,8 +513,12 @@ sock.on("rollTheDice", async(movementAmount) => {
 })
 
 
-sock.on("removeShakeAnimation", (gottisInside, gottisOutside) => {
+sock.on("removeShakeAnimation", (gottisInside, gottisOutside,i) => {
     removeShakeAnimation(gottisInside, gottisOutside)
+   
+
+
+
 })
 
 removeShakeAnimation = (gottisInside, gottisOutside) => {
@@ -622,7 +649,9 @@ sock.on("removePowerUp", type => {
     let c = p.querySelector("." + type);
     p.removeChild(c);
 })
-sock.on("addShakeAnimation", movableGottis => {
+sock.on("addShakeAnimation", (movableGottis,i) => {
+    //console.log(i);
+    
     movableGottis.forEach(element => {
         var d = document.getElementById(element);
         d.classList.add("useMe")
@@ -662,7 +691,9 @@ var rr = setInterval(function() {
     }
 }, 8000);
 
-
+function playagain(){
+    location.reload();
+}
 
 // if (GAMEDATA.currentPlayerColor == 'yellow') {
 

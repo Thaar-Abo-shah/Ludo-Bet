@@ -1,9 +1,9 @@
 class Player {
-    constructor(name, sock) {
+    constructor(name, sock,id = '') {
         this.name = name;
         this.sock = sock;
         this.gameMode = 0;
-        this.profileUrl = '';
+        this.id = id;
         this.inGame = false;
     }
 }

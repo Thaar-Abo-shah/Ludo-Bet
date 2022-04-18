@@ -88,7 +88,7 @@ class Game {
             if (this.noPlayerChange == 0) {
                 this.isPowerUpActive = 0;
                 this.players.forEach(player => {
-                    if (player.sock) player.sock.emit("removeShakeAnimation", this.gottisInside, this.gottisOutside);
+                    if (player.sock) player.sock.emit("removeShakeAnimation", this.gottisInside, this.gottisOutside,this.playerIndex);
                 });
                 this.playerIndex = (this.playerIndex + 1) % 4;
                 while (!this.allGottis.hasOwnProperty(this.playerIndex)) {
@@ -101,7 +101,7 @@ class Game {
                 else if (this.playerIndex == 3) this.currentPlayerColor = "blue";
                 //adds highlight around home of current player 
                 this.players.forEach(player => {
-                    if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id)
+                    if (player.sock) player.sock.emit("playerIndicator", this.currentPlayerColor, this.players[this.playerIndex].id,this.playerIndex)
                 });
             }
         }
@@ -123,23 +123,23 @@ class Game {
                 }
             }
         }
-        console.log("--------------------------------------------")
-        console.log("gottis inside")
-        console.log(this.gottisInside)
-        console.log("gottis inside")
-        console.log("gottis Outside")
-        console.log(this.gottisOutside)
-        console.log("gottis Outside")
-        console.log("all gottis")
-        console.log(this.allGottis)
-        console.log("all gottis")
-        console.log("oppositions")
-        console.log(this.oppPositions)
-        console.log("oppositions")
-        console.log("powerUps positions")
-        console.log(this.powerUpsLocation)
-        console.log("powerUps positions")
-        console.log("--------------------------------------------")
+        // console.log("--------------------------------------------")
+        // console.log("gottis inside")
+        // console.log(this.gottisInside)
+        // console.log("gottis inside")
+        // console.log("gottis Outside")
+        // console.log(this.gottisOutside)
+        // console.log("gottis Outside")
+        // console.log("all gottis")
+        // console.log(this.allGottis)
+        // console.log("all gottis")
+        // console.log("oppositions")
+        // console.log(this.oppPositions)
+        // console.log("oppositions")
+        // console.log("powerUps positions")
+        // console.log(this.powerUpsLocation)
+        // console.log("powerUps positions")
+        // console.log("--------------------------------------------")
             //as he just rolled he still has to move his gotti
             // await this.players[this.playerIndex].emit("calculateAllGottiPos", this.gottisOutside);
         if (this.gottisOutside[this.playerIndex].length == 0) {
@@ -150,14 +150,14 @@ class Game {
             myPositions.forEach(mine => {
                 for (let key in this.oppPositions)
                     if ((key - mine) <= 6 && (key - mine) > 0) {
-                        console.log("there is someone at" + key - mine);
+                        // console.log("there is someone at" + key - mine);
                         biases.push(key - mine)
                     }
             })
             myPositions.forEach(mine => {
                     for (let key in this.powerUpsLocation) {
                         if (key - mine <= 6 && (key - mine) > 0) {
-                            console.log("a powerUp at" + key - mine);
+                            // console.log("a powerUp at" + key - mine);
                             biases.push(key - mine)
                         }
                     }
@@ -167,7 +167,7 @@ class Game {
                 this.movementAmount = UTILS.biasedRandom(biases, 30)
             } else this.movementAmount = UTILS.biasedRandom(6, 20)
         }
-        console.log("the movement amount came to be " + this.movementAmount)
+        // console.log("the movement amount came to be " + this.movementAmount)
         this.players.forEach(async player => {
             if (player.sock) await player.sock.emit("rollTheDice", this.movementAmount)
         });
@@ -263,9 +263,9 @@ class Game {
                         i = CONSTANTS.yellowEntry - 1;
                     }
                 }
-                console.log("moving throught positions-----------")
-                console.log(positions)
-                console.log("moving throught positions-----------")
+                // console.log("moving throught positions-----------")
+                // console.log(positions)
+                // console.log("moving throught positions-----------")
                 if (positions[positions.length - 1]) {
                     this.allGottis[this.playerIndex][id] = positions[positions.length - 1];
                 }
@@ -355,9 +355,9 @@ class Game {
         if (!CONSTANTS.starPositions.includes(fd)) {
             if (this.oppPositions.hasOwnProperty(fd)) {
                 let killed = this.oppPositions[fd];
-                console.log("someone has been murdered")
-                console.log(killed);
-                console.log("someone has been murdered")
+                // console.log("someone has been murdered")
+                // console.log(killed);
+                // console.log("someone has been murdered")
                 this.noPlayerChange = 1;
                 return {
                     "killed": killed,

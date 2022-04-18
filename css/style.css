@@ -1410,6 +1410,23 @@ hr.solid {
     display: block;
 }
 
+
+.red1{
+    background: linear-gradient(90deg, #fc2424 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #fc2424 70%);
+}
+.green1{
+    background: linear-gradient(90deg, #49d113 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #49d113 70%);
+}
+.yallow1{
+    background: linear-gradient(90deg, #f0e006 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #f0e006 70%);
+}
+.blue1{
+    background: linear-gradient(90deg, #2432f5 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #2432f5 70%);
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
     .canvas-section {
         padding: 0 !important;
@@ -1681,6 +1698,10 @@ hr.solid {
     }
     #Canvas {
         padding-top: 4vh;
+    }
+    .dd{
+        left: 2%;
+        top: -2%;
     }
 }
 
