@@ -354,7 +354,7 @@ hr.solid {
     font-weight: bold;
     position: absolute;
     color: white;
-    top: -11px;
+    top: -6vh;
     font-size: 16px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
@@ -372,8 +372,7 @@ hr.solid {
     font-weight: bold;
     position: absolute;
     color: white;
-    bottom: 0px;
-    right: 67px;
+    bottom: -6vh;
     font-size: 16px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
@@ -391,8 +390,7 @@ hr.solid {
     font-weight: bold;
     position: absolute;
     color: white;
-    bottom: 0px;
-    right: 67px;
+    bottom: -6vh;
     font-size: 16px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
@@ -410,8 +408,7 @@ hr.solid {
     font-weight: bold;
     position: absolute;
     color: white;
-    top: -11px;
-    right: 69px;
+    top: -6vh;
     font-size: 16px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
