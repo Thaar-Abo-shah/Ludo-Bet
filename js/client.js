@@ -70,12 +70,12 @@ function createPowerup(type) {
     elem.appendChild(this.description);
     this.image = elem;
 }
- 
+
 
 sock.on("waitForPlayers", (num) => {
     let p = document.createElement("div");
 
-    p.innerHTML = "<span style='width='100%';'>WAITING FOR " + num + " PLAYERS!</span><img src='images/search.svg' width='100px'>"
+    p.innerHTML = "<span style='width='100%';'>WAITING FOR " + num + " PLAYERS!</span><img src='images/search.svg' width='80vh'>"
 
     document.querySelector(".waitingForPlayers").classList.remove("hidden");
     document.querySelector("#startGameDialogue").classList.add("hidden");
@@ -86,7 +86,7 @@ enterGame = () => {
     let name = document.querySelector(".playerName input").value.toUpperCase();
     // document.querySelector("#startGameDialogue").classList.remove("hidden");
     // document.querySelector(".playerName").classList.add("hidden");
-    player={'name':name,'id':name}
+    player = { 'name': name, 'id': name }
     sock.emit("playerName", player);
 }
 
@@ -307,41 +307,37 @@ sock.on("gameOver", (winners) => {
     })
 })
 
-sock.on("playerIndicator", (currentPlayerColor, id,i) => {
+sock.on("playerIndicator", (currentPlayerColor, id, i) => {
 
-    let r=document.querySelector(".roll");
-    if(i==0){
+    let r = document.querySelector(".roll");
+    if (i == 0) {
         r.classList.add("red1");
         r.classList.remove("blue1");
         r.classList.remove("yallow1");
         r.classList.remove("green1");
-    }
-    else if(i==1){
+    } else if (i == 1) {
         r.classList.remove("red1");
         r.classList.remove("blue1");
         r.classList.remove("yallow1");
         r.classList.add("green1");
-    }
-    else if(i==2){
+    } else if (i == 2) {
         r.classList.remove("red1");
         r.classList.remove("blue1");
         r.classList.add("yallow1");
         r.classList.remove("green1");
-    }
-      
-    else if(i==3){
+    } else if (i == 3) {
         r.classList.remove("red1");
         r.classList.add("blue1");
         r.classList.remove("yallow1");
         r.classList.remove("green1");
     }
 
-    
 
 
 
-    
-   
+
+
+
     console.log("adding highlight");
     let all = document.querySelectorAll(".home .profilePic");
     for (let i = 0; i < all.length; i++) {
@@ -513,9 +509,9 @@ sock.on("rollTheDice", async(movementAmount) => {
 })
 
 
-sock.on("removeShakeAnimation", (gottisInside, gottisOutside,i) => {
+sock.on("removeShakeAnimation", (gottisInside, gottisOutside, i) => {
     removeShakeAnimation(gottisInside, gottisOutside)
-   
+
 
 
 
@@ -649,9 +645,9 @@ sock.on("removePowerUp", type => {
     let c = p.querySelector("." + type);
     p.removeChild(c);
 })
-sock.on("addShakeAnimation", (movableGottis,i) => {
+sock.on("addShakeAnimation", (movableGottis, i) => {
     //console.log(i);
-    
+
     movableGottis.forEach(element => {
         var d = document.getElementById(element);
         d.classList.add("useMe")
@@ -691,7 +687,7 @@ var rr = setInterval(function() {
     }
 }, 8000);
 
-function playagain(){
+function playagain() {
     location.reload();
 }
 

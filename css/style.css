@@ -73,6 +73,7 @@ hr.solid {
 
 .playerName input {
     outline: none;
+    font-size: 3vh;
     height: 40px;
     box-sizing: border-box;
     width: 50%;
@@ -112,16 +113,16 @@ hr.solid {
 
 #startGameDialogue button,
 #endGameDialogue button {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.03);
-    font-size: 18px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 3%);
+    font-size: 3vh;
     cursor: pointer;
     background-color: white;
     border: none;
     outline: none;
-    height: 40px;
-    width: 200px;
+    height: 6vh;
+    width: 30vh;
     display: block;
-    margin: 14px auto;
+    margin: 3px auto;
     border-radius: 12px;
     transition: all 0.4s ease-in-out;
     color: var(--secound);
@@ -223,7 +224,7 @@ hr.solid {
 .canvas-section {
     display: flex;
     flex-wrap: wrap;
-    height: 600px;
+    height: 84vh;
     border-radius: 3%;
     background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
@@ -709,12 +710,11 @@ hr.solid {
 
 .statesic {
     padding: 0 !important;
-    padding-top: 40px !important;
     align-items: stretch;
     justify-content: center;
     position: absolute;
     top: 9vh;
-    height: 600px;
+    height: 84vh;
     /* left: 30vh; */
     width: 244px;
     display: flex !important;
@@ -731,7 +731,7 @@ hr.solid {
     justify-content: center;
     position: absolute;
     top: 9vh;
-    height: 600px;
+    height: 84vh;
     /* right: 30vh; */
     width: 244px;
     display: flex !important;
@@ -792,8 +792,8 @@ hr.solid {
 
 .properties .messages {
     z-index: 4;
-    bottom: 120px;
-    padding: 15px;
+    bottom: 20vh;
+    /* padding: 15px; */
     position: absolute;
     text-align: center;
     width: 100%;
@@ -804,7 +804,7 @@ hr.solid {
     position: absolute;
     width: 100%;
     overflow: scroll;
-    height: 330px;
+    height: 43vh;
     left: 0;
     padding: 15px;
     border-radius: -1px;
@@ -835,8 +835,8 @@ hr.solid {
 
 .properties .roll {
     align-items: flex-end;
-    height: 130px;
-    top: 77%;
+    height: 19.5vh;
+    top: 65vh;
     position: absolute;
     overflow: hidden;
     border-radius: 8px;
@@ -849,13 +849,15 @@ hr.solid {
     z-index: 127;
     POSITION: ABSOLUTE;
     display: flex;
-    height: 75px;
-    top: -27px;
+    height: 12vh;
+    left: 4vh;
     cursor: pointer;
 }
 
 .messages div {
+    display: flex;
     width: 100%;
+    padding-left: 6px;
     height: 50%;
 }
 
@@ -885,10 +887,10 @@ hr.solid {
     outline: none;
     position: absolute;
     border: none;
-    right: -8px;
-    top: -6px;
-    height: 40px;
-    width: 40px;
+    right: 2vh;
+    top: -8px;
+    height: 7vh;
+    width: 9vh;
     border-radius: 20px;
     background-color: transparent;
     cursor: pointer;
@@ -923,7 +925,7 @@ hr.solid {
 
 .ludo-texuer {
     width: 100%;
-    height: 300px;
+    height: 35vh;
     /* position: absolute; */
     display: flex;
     align-items: center;
@@ -934,14 +936,14 @@ hr.solid {
     color: var(--blue);
     border-radius: 115px;
     background-color: white;
-    height: 150px;
+    height: 20vh;
     margin: 15px;
-    width: 150px !important;
+    width: 20vh !important;
     border: 6px solid var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 100px;
+    font-size: 13vh;
     font-family: math;
     box-shadow: 17px 11px 30px 12px var(--shadow);
     animation: wiggle 3s linear infinite;
@@ -977,13 +979,13 @@ hr.solid {
     color: var(--red);
     border-radius: 115px;
     background-color: white;
-    height: 150px;
-    width: 150px !important;
+    height: 20vh;
+    width: 20vh !important;
     border: 6px solid var(--red);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 100px;
+    font-size: 13vh;
     font-family: math;
     margin: 15px;
     box-shadow: 17px 11px 30px 12px var(--shadow);
@@ -993,14 +995,14 @@ hr.solid {
     color: var(--green);
     border-radius: 115px;
     background-color: white;
-    height: 150px;
-    width: 150px !important;
+    height: 20vh;
+    width: 20vh !important;
     margin: 15px;
     border: 6px solid var(--green);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 100px;
+    font-size: 13vh;
     font-family: math;
     box-shadow: 17px 11px 30px 12px var(--shadow);
 }
@@ -1009,23 +1011,23 @@ hr.solid {
     color: var(--yellow);
     border-radius: 115px;
     background-color: white;
-    height: 150px;
-    width: 150px !important;
+    height: 20vh;
+    width: 20vh !important;
     border: 6px solid var(--yellow);
     display: flex;
     align-items: center;
     margin: 15px;
     justify-content: center;
-    font-size: 100px;
+    font-size: 13vh;
     font-family: math;
     box-shadow: 17px 11px 30px 12px var(--shadow);
 }
 
 .ludo-logo-king-img {
     position: absolute;
-    width: 140px;
-    top: -65px;
-    right: -16px;
+    width: 21vh;
+    top: -9.5vh;
+    right: -3.5vh;
 }
 
 .ludo-logo-king-text {
@@ -1055,17 +1057,18 @@ hr.solid {
 }
 
 .wait-section {
-    margin-top: 15%;
+    margin-top: 39vh;
     color: white;
     border-radius: 19px;
     position: fixed !important;
-    width: 50% !important;
-    left: 25%;
+    width: 85vh !important;
+    left: 28%;
+    padding: 0;
     display: flex;
     align-items: baseline;
     justify-content: center;
-    height: 20%;
-    font-size: 40px;
+    /* height: 20%; */
+    font-size: 4vh;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
     background-image: linear-gradient(to right top, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33, #aaaaaa33);
 }
@@ -1086,37 +1089,41 @@ hr.solid {
 
 .div-audio {
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 5px;
-    top: 19%;
+    /* padding: 5px; */
+    top: 7vh;
     height: 60px;
 }
 
 .audio-play-button {
+    padding-top: 3px;
+    padding-left: 6px;
     justify-content: center;
     display: flex;
     align-items: center;
     color: var(--white);
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    width: 40px;
+    width: 12vh;
     background: var(--bluetest);
-    border-radius: 59px;
-    height: 40px;
+    border-radius: 95px;
+    height: 8vh;
     cursor: pointer;
     margin: 3px;
 }
 
 .audio-stop-button {
+    padding-top: 3px;
     justify-content: center;
     display: flex;
     cursor: pointer;
     color: var(--white);
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    width: 40px;
+    width: 12vh;
     background: var(--redtest);
     border-radius: 59px;
-    height: 40px;
+    height: 8vh;
     margin: 3px;
 }
 
@@ -1131,10 +1138,10 @@ hr.solid {
     color: var(--white);
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    width: 40px;
+    width: 12vh;
     background: var(--greentest);
     border-radius: 59px;
-    height: 40px;
+    height: 8vh;
     margin: 3px;
 }
 
@@ -1146,10 +1153,10 @@ hr.solid {
     color: var(--white);
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    width: 40px;
+    width: 12vh;
     background: var(--yellowtest);
     border-radius: 59px;
-    height: 40px;
+    height: 8vh;
     margin: 3px;
 }
 
@@ -1162,10 +1169,10 @@ hr.solid {
     color: var(--white);
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-    width: 40px;
+    width: 12vh;
     background: var(--redtest);
     border-radius: 59px;
-    height: 40px;
+    height: 8vh;
     margin: 3px;
 }
 
@@ -1196,7 +1203,7 @@ hr.solid {
 #cube {
     width: 100%;
     height: 100%;
-    top: -27px;
+    top: -5px;
     position: absolute;
     transform-style: preserve-3d;
     transition: transform 1s;
@@ -1387,7 +1394,7 @@ hr.solid {
     font-family: system-ui;
     position: absolute;
     color: white;
-    top: 120px;
+    top: 2vh;
 }
 
 .convatext {
@@ -1410,22 +1417,21 @@ hr.solid {
     display: block;
 }
 
-
-.red1{
-    background: linear-gradient(90deg, #fc2424 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #fc2424 70%);
-}
-.green1{
-    background: linear-gradient(90deg, #49d113 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #49d113 70%);
-}
-.yallow1{
-    background: linear-gradient(90deg, #f0e006 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #f0e006 70%);
-}
-.blue1{
-    background: linear-gradient(90deg, #2432f5 30%, rgba(9,9,121,0) 45%, rgba(4,130,201,0) 53%, #2432f5 70%);
+.red1 {
+    background: linear-gradient(90deg, #fc2424 30%, rgba(9, 9, 121, 0) 45%, rgba(4, 130, 201, 0) 53%, #fc2424 70%);
 }
 
+.green1 {
+    background: linear-gradient(90deg, #49d113 30%, rgba(9, 9, 121, 0) 45%, rgba(4, 130, 201, 0) 53%, #49d113 70%);
+}
 
+.yallow1 {
+    background: linear-gradient(90deg, #f0e006 30%, rgba(9, 9, 121, 0) 45%, rgba(4, 130, 201, 0) 53%, #f0e006 70%);
+}
 
+.blue1 {
+    background: linear-gradient(90deg, #2432f5 30%, rgba(9, 9, 121, 0) 45%, rgba(4, 130, 201, 0) 53%, #2432f5 70%);
+}
 
 @media only screen and (max-width: 768px) {
     .canvas-section {
@@ -1699,7 +1705,7 @@ hr.solid {
     #Canvas {
         padding-top: 4vh;
     }
-    .dd{
+    .dd {
         left: 2%;
         top: -2%;
     }
