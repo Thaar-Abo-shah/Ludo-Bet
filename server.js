@@ -83,7 +83,7 @@ io.on('connection', async(sock) => {
             if (player.sock) player.sock.emit("showMessage", message, playerColor)
         });
     })
-    sock.on("finishedMoving", (result) => {
+    sock.on("finishedMoving", result => {
         if(games[sock.roomId]!=null)
         if (games[sock.roomId].players[games[sock.roomId].playerIndex].sock.id == sock.id) {
             // console.log("finished moving" + sock.id)
@@ -96,7 +96,7 @@ io.on('connection', async(sock) => {
                 games[sock.roomId].winners.push(games[sock.roomId].currentPlayerColor);
                 delete games[sock.roomId].allGottis[games[sock.roomId].playerIndex];
                 if (Object.keys(games[sock.roomId].allGottis).length == 1) {
-                    // console.log("game really done");
+                    console.log("game really done");
                     gameOver(sock);
                 }
             }
@@ -230,6 +230,7 @@ io.on('connection', async(sock) => {
             gameLobby[num] = [];
         } else {
             gameLobby[num].forEach(el => {
+                if(el.sock != null)
                 el.sock.emit("waitForPlayers", num - gameLobby[num].length)
             })
         }

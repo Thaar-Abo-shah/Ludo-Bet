@@ -281,7 +281,7 @@ sock.on("timeforplay", async(count) => {
     } else {
         let dd = document.getElementById('time_play')
         dd.classList.add('timer_play')
-        await new Promise(f => setTimeout(f, 16000))
+        await new Promise(f => setTimeout(f, 12000))
         dd.classList.remove('timer_play')
     }
 })
@@ -539,7 +539,7 @@ removeShakeAnimation = (gottisInside, gottisOutside) => {
     }
 }
 
-sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutside, result) => {
+sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutside, result,num) => {
     GAMEDATA.playerIndex = playerIndex;
     removeShakeAnimation(gottisInside, gottisOutside);
     let g = document.getElementById(id);
@@ -556,7 +556,7 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
         }
         //if the gotti has reached the finish line
         i++;
-        w =
+        
             fd = document.getElementById(positions[i]);
         if (fd) {
             fdGottis = fd.getElementsByClassName("Gotti");
@@ -570,7 +570,7 @@ sock.on("moveGotti", async(id, playerIndex, positions, gottisInside, gottisOutsi
             if (result["killed"]) killGotti(result['killed']);
             if (result['powerUp']) addPowerUp(result['powerUp'])
             if (result["gottiHome"]) gottiHome(result['gottiHome'])
-            if (result["gameFinished"]) gottiHome(result['gottiHome'])
+            if (result["gameFinished"]) gameFinished(num,result['gameFinished'])
         }
     }
     if (GAMEDATA.playerIds[GAMEDATA.playerIndex] == sock.id) {
@@ -622,10 +622,10 @@ killGotti = (killed) => {
     }
 }
 
-gameFinished = (totalPlayersCount) => {
+gameFinished = (totalPlayersCount,res) => {
     let endGame = document.querySelector("#endGameDialogue");
-    if (totalPlayersCount.length == 1) {
-
+    if (totalPlayersCount == 2) {
+      
     }
     for (let i = 0; i < totalPlayersCount; i++) {
         let el = document.createElement("button");

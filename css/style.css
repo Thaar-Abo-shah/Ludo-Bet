@@ -142,7 +142,10 @@ hr.solid {
     width: 40%;
     height: 40%;
 }
-
+.txt{
+    font-weight: 1000;
+    font-family: serif !important;
+}
 #Canvas .path {
     box-sizing: border-box;
     width: 20%;
@@ -846,8 +849,9 @@ hr.solid {
     z-index: 127;
     POSITION: ABSOLUTE;
     display: flex;
-    height: 12vh;
-    left: 4vh;
+    height: 100%;
+    left: 0vh;
+    width: 100%;
     cursor: pointer;
 }
 
@@ -1201,7 +1205,7 @@ hr.solid {
     width: 100%;
     height: 100%;
     top: -5px;
-    position: absolute;
+    position: relative;
     transform-style: preserve-3d;
     transition: transform 1s;
 }
@@ -1214,7 +1218,7 @@ hr.solid {
     position: absolute;
     width: 75px;
     bottom: 8%;
-    height: 66px;
+    height: 85px;
 }
 
 #cube div {
@@ -1509,7 +1513,7 @@ hr.solid {
         justify-content: center;
     }
     .statesic {
-        padding-top: 73px !important;
+        padding-top: 0 !important;
         align-items: stretch;
         justify-content: center;
         position: absolute;
@@ -1583,7 +1587,7 @@ hr.solid {
         justify-content: center;
         position: absolute;
         /* bottom: 2vh; */
-        height: 18%;
+        height: 15%;
         /* top: auto; */
         /* left: 4%; */
         width: 91.5%;
@@ -1649,11 +1653,10 @@ hr.solid {
         color: var(--white);
         align-items: center;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 10%);
-        width: 40px;
-        padding: 2px;
-        background: var(--bg);
+        width: 12vh;
+        background: var(--greentest);
         border-radius: 59px;
-        height: 40px;
+        height: 8vh;
         margin: 3px;
     }
     .conv_div {
@@ -1700,11 +1703,32 @@ hr.solid {
         top: 5%;
     }
     #Canvas {
-        padding-top: 4vh;
+        padding-top: 6vh;
     }
     .dd {
         left: 2%;
         top: -2%;
+    }
+    .properties .roll {
+        align-items: center;
+        height: 100%;
+        top: 65vh;
+        position: absolute;
+        overflow: hidden;
+        border-radius: 8px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .messages div {
+        display: flex;
+        width: 72%;
+        padding-left: 6px;
+        height: 50%;
+    }
+    .dm button {
+        top: -48%;
+        right: -7vh;
     }
 }
 
@@ -1729,3 +1753,38 @@ hr.solid {
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+
+.a:hover,.aa:hover,.aaa:hover,.aaaa:hover ,.aaaaa:hover{
+    transition-duration: 0.1s;
+    background-color: #3A3A3A;
+  }
+  
+   .a:after,.aa:after,.aaa:after,.aaaa:after ,.aaaaa:after{
+    content: "";
+    display: block;
+     border-radius: 4em;
+   
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  
+  
+  
+  
+  .a:active:after ,.aa:active:after ,.aaa:active:after ,.aaaa:active:after  ,.aaaaa:active:after {
+    box-shadow: 0 0 0 0 white;
+     border-radius: 4em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .a:active ,.aa:active ,.aaa:active ,.aaaa:active  ,.aaaaa:active{
+    top: 1px;
+  }

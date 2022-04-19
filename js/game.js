@@ -15,6 +15,11 @@ const CONSTANTS = {
     starPositions: [1, 9, 14, 22, 27, 35, 40, 48],
     defaultColors: ['red', 'green', 'yellow', 'blue'],
     timer: '',
+    greenstreat:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,100,101,102,103,104,105],
+    yallowstreat:[14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,110,111,112,113,114,115],
+    bluestreat:[27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,120,121,122,123,124,125],
+    redstreat:[40,41,42,43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,130,131,132,133,134,135]
+
 }
 
 
@@ -61,30 +66,31 @@ class Game {
             [],
             []
         ]
+        this
     }
 
     async playerIndicator() {
         this.hasMoved = 1;
         this.movableGottis = [];
         if (this.sixCount == 0 && this.noPlayerChange == 0) {
-            if (this.powerUps[this.playerIndex].length > 0) {
-                this.isPowerUpActive++;
-                if (this.isPowerUpActive == 1) {
-                    //power focus vanera event emit gar
-                    this.hasMoved = 0;
-                    CONSTANTS.timer = '';
-                    //indicate powerUps that can be used
-                    this.players[this.playerIndex].sock.emit("timeforplay", "")
-                    this.players[this.playerIndex].sock.emit("powerUpTime", "");
-                    this.players.forEach(player => {
-                        if (player.sock) player.sock.emit("showMessage", "Powerup Time", this.currentPlayerColor)
-                    });
-                    CONSTANTS.timer = new UTILS.Sleep(4000);
-                    await CONSTANTS.timer.wait();
-                    this.hasMoved = 1;
-                    //powerups bata focus hata vanera code han}
-                }
-            }
+            // if (this.powerUps[this.playerIndex].length > 0) {
+            //     this.isPowerUpActive++;
+            //     if (this.isPowerUpActive == 1) {
+            //         //power focus vanera event emit gar
+            //         this.hasMoved = 0;
+            //         CONSTANTS.timer = '';
+            //         //indicate powerUps that can be used
+            //         this.players[this.playerIndex].sock.emit("timeforplay", "")
+            //        // this.players[this.playerIndex].sock.emit("powerUpTime", "");
+            //         // this.players.forEach(player => {
+            //         //     if (player.sock) player.sock.emit("showMessage", "Powerup Time", this.currentPlayerColor)
+            //         // });
+            //         CONSTANTS.timer = new UTILS.Sleep(4000);
+            //         await CONSTANTS.timer.wait();
+            //         this.hasMoved = 1;
+            //         //powerups bata focus hata vanera code han}
+            //     }
+            // }
             if (this.noPlayerChange == 0) {
                 this.isPowerUpActive = 0;
                 this.players.forEach(player => {
@@ -219,12 +225,65 @@ class Game {
                 });
 
                 await new Promise(resolve => setTimeout(resolve, 8000));
-                if (this.test_move == 0) {
-                    var max = Math.max(...movableGottisPositions);
+                if (this.test_move == 0 && this.movableGottis[0]!=null) {
+                     
+                    var maxpos=0;
+                    var got='';
+                    if(this.movableGottis[0].includes("green")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            var x=CONSTANTS.greenstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                            }
+                        })
+                    }
+                    else  if(this.movableGottis[0].includes("yellow")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            console.log("==================================================================================");
+                            console.log(el);
+                            console.log(index);
+                            var x=CONSTANTS.yallowstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                                console.log("------------------------------");
+                                console.log(maxpos);
+                                console.log(got);
+                            }
+                        })
+                    }
 
-                    var index = movableGottisPositions.indexOf(max);
-                    console.log(index)
-                    this.moveGotti(this.movableGottis[index])
+                    else  if(this.movableGottis[0].includes("blue")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            var x=CONSTANTS.bluestreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                            }
+                        })
+                    }
+
+                    else  if(this.movableGottis[0].includes("red")){
+                        movableGottisPositions.forEach((el,index)=>{
+
+                            console.log("==================================================================================");
+                            console.log(el);
+                            console.log(index);
+                            var x=CONSTANTS.redstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                                console.log("------------------------------");
+                                console.log(maxpos);
+                                console.log(got);
+                            }
+                        })
+                    }
+
+
+
+                    this.moveGotti(got)
 
                 }
             }
@@ -234,14 +293,67 @@ class Game {
                     if (player.sock) await player.sock.emit("timeforplay", sixCount)
                 });
 
-                await new Promise(resolve => setTimeout(resolve, 16000));
-                if (this.test_move == 0) {
-                    var max = Math.max(...movableGottisPositions);
+                await new Promise(resolve => setTimeout(resolve, 12000));
+                if (this.test_move == 0 && this.movableGottis[0]!=null) {
+                    var maxpos=0;
+                    var got='';
+                    if(this.movableGottis[0].includes("green")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            var x=CONSTANTS.greenstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                            }
+                        })
+                    }
+                    else  if(this.movableGottis[0].includes("yellow")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            console.log("==================================================================================");
+                            console.log(el);
+                            console.log(index);
+                            var x=CONSTANTS.yallowstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
 
-                    var index = movableGottisPositions.indexOf(max);
-                    console.log(index)
+                                console.log("------------------------------");
+                                console.log(maxpos);
+                                console.log(got);
+                            }
+                        })
+                    }
 
-                    this.moveGotti(this.movableGottis[index])
+                    else  if(this.movableGottis[0].includes("blue")){
+                        movableGottisPositions.forEach((el,index)=>{
+                            var x=CONSTANTS.bluestreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+                            }
+                        })
+                    }
+
+                     else  if(this.movableGottis[0].includes("red")){
+                        movableGottisPositions.forEach((el,index)=>{
+
+                            console.log("==================================================================================");
+                            console.log(el);
+                            console.log(index);
+                            var x=CONSTANTS.redstreat.indexOf(el)
+                            if(x > maxpos){
+                                maxpos=x;
+                                got=this.movableGottis[index];
+
+                                console.log("------------------------------");
+                                console.log(maxpos);
+                                console.log(got);
+                            }
+                        })
+                    }
+
+
+
+                    this.moveGotti(got)
                 }
             }
         }
@@ -249,6 +361,8 @@ class Game {
     async moveGotti(id) {
         this.test_move = 1;
         if (this.hasMoved == 0) {
+            console.log("********************************");
+            console.log(this.allGottis);
             if (this.allGottis[this.playerIndex][id] == 0) {
                 this.getGottiOut(id, this.playerIndex)
             } else {
@@ -269,7 +383,11 @@ class Game {
                     positions.push(i);
                     if (i == 105 || i == 115 || i == 125 || i == 135) {
                         result["gottiHome"] = id;
-                        if (this.gottisInside[this.playerIndex].length == 0) {
+
+                        console.log("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+                        console.log(this.allGottis[this.playerIndex]);
+                        console.log(this.gottisInside[this.playerIndex]);
+                        if (this.gottisInside[this.playerIndex].length == 0  && this.allGottis[this.playerIndex].length == 0) {
                             result['gameFinished'] = this.playerIndex;
                         } else {
                             this.noPlayerChange = 1;
@@ -299,9 +417,8 @@ class Game {
                 //checing final position for any gotti or powerUp
                 let r = this.checkFinalPosition(this.allGottis[this.playerIndex][id]);
                 result['killed'] = r['killed']
-                result['powerUp'] = r['powerUp']
-                this.players.forEach(async player => {
-                    if (player.sock) await player.sock.emit("moveGotti", id, this.playerIndex, positions, this.gottisInside, this.gottisOutside, result)
+                 this.players.forEach(async player => {
+                    if (player.sock) await player.sock.emit("moveGotti", id, this.playerIndex, positions, this.gottisInside, this.gottisOutside, result,this.players.length)
                 });
             }
         }
